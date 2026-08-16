@@ -9,7 +9,8 @@ document.querySelector('#app').innerHTML = `
     </a>
     <ul class="nav-links">
       <li><a href="#concept">Concept</a></li>
-      <li><a href="#economics">Unit Economics</a></li>
+      <li><a href="interior.html">Interior Renders</a></li>
+      <li><a href="toppings.html">Toppings & Taps</a></li>
       <li><a href="#calculator">ROI Calculator</a></li>
       <li><a href="#sourcing">Procurement</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
@@ -72,8 +73,18 @@ document.querySelector('#app').innerHTML = `
         <p>White terrazzo island with 24+ refrigerated topping wells featuring Japanese mochi, fresh berries & warm pistachio drizzle taps.</p>
       </div>
     </div>
-    <div style="margin-top: 3rem; text-align: center;">
-      <img src="store_mockup.jpg" alt="Yuki-Chi Store Interior Mockup" style="max-width: 100%; border-radius: 16px; border: 1px solid var(--border-color);" />
+    <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <a href="interior.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
+        <img src="interior_angle_1.jpg" alt="Interior Gallery" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Explore Store Interior Renders ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">View wide-angle Japandi seating, Timber panelling & Pop-Art Wall</p>
+      </a>
+
+      <a href="toppings.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
+        <img src="topping_island_detail.jpg" alt="Toppings Gallery" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Explore Gourmet Toppings & Sauce Taps ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">View Chrome Sauce Taps, Mini Mochis, Brownie Cubes & Love Letters</p>
+      </a>
     </div>
   </section>
 
