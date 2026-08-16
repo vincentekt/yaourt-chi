@@ -1,26 +1,35 @@
 /* empty css              */(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const a of document.querySelectorAll('link[rel="modulepreload"]'))o(a);new MutationObserver(a=>{for(const n of a)if(n.type==="childList")for(const s of n.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&o(s)}).observe(document,{childList:!0,subtree:!0});function r(a){const n={};return a.integrity&&(n.integrity=a.integrity),a.referrerPolicy&&(n.referrerPolicy=a.referrerPolicy),a.crossOrigin==="use-credentials"?n.credentials="include":a.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function o(a){if(a.ep)return;a.ep=!0;const n=r(a);fetch(a.href,n)}})();document.querySelector("#app").innerHTML=`
   <!-- Navbar -->
   <nav class="navbar">
-    <a href="#" class="nav-logo">
-      <span>Yuki-Chi</span>
-      <span class="kanji-badge">雪知</span>
-    </a>
+    <div class="nav-brand-wrap">
+      <a href="#" class="nav-logo">
+        <span>Yuki-Chi</span>
+        <span class="kanji-badge">雪知</span>
+      </a>
+    </div>
+
     <ul class="nav-links">
       <li><a href="#concept">Concept</a></li>
-      <li><a href="interior.html">Interior Renders</a></li>
-      <li><a href="toppings.html">Toppings & Taps</a></li>
-      <li><a href="customer-creations.html">Customer Creations</a></li>
+      <li class="nav-dropdown-item">
+        <a href="interior.html" class="dropdown-trigger">Galleries ▾</a>
+        <div class="dropdown-menu">
+          <a href="interior.html">🏛️ Store Architecture</a>
+          <a href="toppings.html">🍓 Toppings & Sauce Bar</a>
+          <a href="customer-creations.html">🍨 Customer Creations</a>
+        </div>
+      </li>
       <li><a href="#calculator">ROI Calculator</a></li>
-      <li><a href="#sourcing">Procurement</a></li>
-      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#sourcing">Financials & Sourcing</a></li>
+      <li><a href="#roadmap">Growth Roadmap</a></li>
     </ul>
-    <div style="display: flex; align-items: center; gap: 1rem;">
+
+    <div class="nav-actions">
       <div class="currency-switch-wrap" id="currency-switch">
         <button class="curr-btn active" data-curr="VND">VND</button>
         <button class="curr-btn" data-curr="USD">USD</button>
         <button class="curr-btn" data-curr="SGD">SGD</button>
       </div>
-      <a href="#calculator" class="btn-primary">View Pitch Deck</a>
+      <a href="#calculator" class="btn-primary nav-cta">View Pitch Deck</a>
     </div>
   </nav>
 
@@ -273,7 +282,7 @@
   <footer>
     <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Private & Confidential Investor Briefing.</p>
   </footer>
-`;let l="VND";const y={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=y[l],r=i*e.rate;if(l==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(r)}const g=document.querySelector("#input-cups"),v=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),x=document.querySelector("#val-cups"),S=document.querySelector("#val-weight"),C=document.querySelector("#val-price"),w=document.querySelector("#res-aov"),k=document.querySelector("#res-revenue"),T=document.querySelector("#res-cogs"),m=document.querySelector("#res-opex"),P=document.querySelector("#res-net"),M=document.querySelector("#res-payback"),h=document.querySelector("#hero-price");function c(){const i=parseInt(g.value),e=parseInt(v.value),r=parseInt(b.value);x.textContent=i,S.textContent=`${e}g`,C.textContent=t(r),h&&(h.textContent=`${t(r)} / 100g`);const o=e/100*r,a=i*o*30,n=a*.31,s=17e7,d=a-n-s,u=d>0?(16e8/d).toFixed(1):"N/A";w.textContent=t(o),k.textContent=t(a),T.textContent=`-${t(n)}`,m&&(m.textContent=`-${t(s)}`),P.textContent=t(d),M.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}g.addEventListener("input",c);v.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(r=>r.classList.remove("active")),e.target.classList.add("active"),l=e.target.getAttribute("data-curr"),c(),p()})});const D=document.querySelector("#tab-content");let f="machines";function p(){const i=l,e={machines:`
+`;let l="VND";const y={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=y[l],r=i*e.rate;if(l==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(r)}const g=document.querySelector("#input-cups"),v=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),x=document.querySelector("#val-cups"),S=document.querySelector("#val-weight"),w=document.querySelector("#val-price"),C=document.querySelector("#res-aov"),k=document.querySelector("#res-revenue"),T=document.querySelector("#res-cogs"),m=document.querySelector("#res-opex"),P=document.querySelector("#res-net"),M=document.querySelector("#res-payback"),h=document.querySelector("#hero-price");function c(){const i=parseInt(g.value),e=parseInt(v.value),r=parseInt(b.value);x.textContent=i,S.textContent=`${e}g`,w.textContent=t(r),h&&(h.textContent=`${t(r)} / 100g`);const o=e/100*r,a=i*o*30,n=a*.31,s=17e7,d=a-n-s,u=d>0?(16e8/d).toFixed(1):"N/A";C.textContent=t(o),k.textContent=t(a),T.textContent=`-${t(n)}`,m&&(m.textContent=`-${t(s)}`),P.textContent=t(d),M.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}g.addEventListener("input",c);v.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(r=>r.classList.remove("active")),e.target.classList.add("active"),l=e.target.getAttribute("data-curr"),c(),p()})});const D=document.querySelector("#tab-content");let f="machines";function p(){const i=l,e={machines:`
       <thead>
         <tr>
           <th>Tier / Model</th>
