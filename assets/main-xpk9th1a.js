@@ -1,4 +1,4 @@
-(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})(),document.querySelector(`#app`).innerHTML=`
+/* empty css              */(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))r(t);new MutationObserver(t=>{for(const e of t)if(e.type==="childList")for(const s of e.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&r(s)}).observe(document,{childList:!0,subtree:!0});function n(t){const e={};return t.integrity&&(e.integrity=t.integrity),t.referrerPolicy&&(e.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?e.credentials="include":t.crossOrigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function r(t){if(t.ep)return;t.ep=!0;const e=n(t);fetch(t.href,e)}})();document.querySelector("#app").innerHTML=`
   <!-- Navbar -->
   <nav class="navbar">
     <a href="#" class="nav-logo">
@@ -7,7 +7,8 @@
     </a>
     <ul class="nav-links">
       <li><a href="#concept">Concept</a></li>
-      <li><a href="#economics">Unit Economics</a></li>
+      <li><a href="interior.html">Interior Renders</a></li>
+      <li><a href="toppings.html">Toppings & Taps</a></li>
       <li><a href="#calculator">ROI Calculator</a></li>
       <li><a href="#sourcing">Procurement</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
@@ -70,8 +71,18 @@
         <p>White terrazzo island with 24+ refrigerated topping wells featuring Japanese mochi, fresh berries & warm pistachio drizzle taps.</p>
       </div>
     </div>
-    <div style="margin-top: 3rem; text-align: center;">
-      <img src="store_mockup.jpg" alt="Yuki-Chi Store Interior Mockup" style="max-width: 100%; border-radius: 16px; border: 1px solid var(--border-color);" />
+    <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <a href="interior.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
+        <img src="interior_angle_1.jpg" alt="Interior Gallery" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Explore Store Interior Renders ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">View wide-angle Japandi seating, Timber panelling & Pop-Art Wall</p>
+      </a>
+
+      <a href="toppings.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
+        <img src="topping_island_detail.jpg" alt="Toppings Gallery" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Explore Gourmet Toppings & Sauce Taps ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">View Chrome Sauce Taps, Mini Mochis, Brownie Cubes & Love Letters</p>
+      </a>
     </div>
   </section>
 
@@ -188,7 +199,7 @@
   <footer>
     <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Private & Confidential Investor Briefing.</p>
   </footer>
-`;var e=document.querySelector(`#input-cups`),t=document.querySelector(`#input-weight`),n=document.querySelector(`#input-price`),r=document.querySelector(`#val-cups`),i=document.querySelector(`#val-weight`),a=document.querySelector(`#val-price`),o=document.querySelector(`#res-aov`),s=document.querySelector(`#res-revenue`),c=document.querySelector(`#res-cogs`),l=document.querySelector(`#res-net`),u=document.querySelector(`#res-payback`);function d(e){return new Intl.NumberFormat(`vi-VN`).format(Math.round(e))+` VNĐ`}function f(){let f=parseInt(e.value),p=parseInt(t.value),m=parseInt(n.value);r.textContent=f,i.textContent=`${p}g`,a.textContent=d(m);let h=p/100*m,g=f*h*30,_=g*.31,v=g-_-17e7,y=v>0?(16e8/v).toFixed(1):`N/A`;o.textContent=d(h),s.textContent=d(g),c.textContent=`-${d(_)}`,l.textContent=d(v),u.textContent=y===`N/A`?`Unprofitable`:`~${y} Months`}e.addEventListener(`input`,f),t.addEventListener(`input`,f),n.addEventListener(`input`,f),f();var p={machines:`
+`;const p=document.querySelector("#input-cups"),u=document.querySelector("#input-weight"),h=document.querySelector("#input-price"),m=document.querySelector("#val-cups"),b=document.querySelector("#val-weight"),f=document.querySelector("#val-price"),y=document.querySelector("#res-aov"),C=document.querySelector("#res-revenue"),w=document.querySelector("#res-cogs"),S=document.querySelector("#res-net"),N=document.querySelector("#res-payback");function o(i){return new Intl.NumberFormat("vi-VN").format(Math.round(i))+" VNĐ"}function d(){const i=parseInt(p.value),a=parseInt(u.value),n=parseInt(h.value);m.textContent=i,b.textContent=`${a}g`,f.textContent=o(n);const r=a/100*n,t=i*r*30,e=t*.31,c=t-e-17e7,l=c>0?(16e8/c).toFixed(1):"N/A";y.textContent=o(r),C.textContent=o(t),w.textContent=`-${o(e)}`,S.textContent=o(c),N.textContent=l!=="N/A"?`~${l} Months`:"Unprofitable"}p.addEventListener("input",d);u.addEventListener("input",d);h.addEventListener("input",d);d();const g={machines:`
     <thead>
       <tr>
         <th>Tier / Model</th>
@@ -293,4 +304,4 @@
         <td>94,250,000 VNĐ</td>
       </tr>
     </tbody>
-  `},m=document.querySelector(`#tab-content`);m.innerHTML=p.machines,document.querySelectorAll(`.tab-btn`).forEach(e=>{e.addEventListener(`click`,e=>{document.querySelectorAll(`.tab-btn`).forEach(e=>e.classList.remove(`active`)),e.target.classList.add(`active`),m.innerHTML=p[e.target.getAttribute(`data-tab`)]})});
+  `},v=document.querySelector("#tab-content");v.innerHTML=g.machines;document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",a=>{document.querySelectorAll(".tab-btn").forEach(r=>r.classList.remove("active")),a.target.classList.add("active");const n=a.target.getAttribute("data-tab");v.innerHTML=g[n]})});
