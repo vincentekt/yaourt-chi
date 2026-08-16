@@ -11,6 +11,7 @@ document.querySelector('#app').innerHTML = `
       <li><a href="#concept">Concept</a></li>
       <li><a href="interior.html">Interior Renders</a></li>
       <li><a href="toppings.html">Toppings & Taps</a></li>
+      <li><a href="customer-creations.html">Customer Creations</a></li>
       <li><a href="#calculator">ROI Calculator</a></li>
       <li><a href="#sourcing">Procurement</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
@@ -45,7 +46,7 @@ document.querySelector('#app').innerHTML = `
         </div>
       </div>
       <div class="hero-image-wrap">
-        <img src="hero_bowl.jpg" alt="Acai Bowl Concept" class="hero-img" />
+        <img src="customer_cup_dual_flavor.jpg" alt="Acai Bowl Concept" class="hero-img" />
       </div>
     </div>
   </header>
@@ -69,11 +70,11 @@ document.querySelector('#app').innerHTML = `
       </div>
       <div class="feature-card">
         <div class="card-icon">🍓</div>
-        <h3>360° Cold Topping Island</h3>
-        <p>White terrazzo island with 24+ refrigerated topping wells featuring Japanese mochi, fresh berries & warm pistachio drizzle taps.</p>
+        <h3>Spacious Island Topping Bar</h3>
+        <p>Calacatta marble island with spacious ceramic bowls, mini mochis, brownies, and warm copper drizzle wells.</p>
       </div>
     </div>
-    <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+    <div class="grid-3" style="margin-top: 3rem;">
       <a href="interior.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
         <img src="yuki_chi_store_complete.jpg" alt="Interior Architecture" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
         <h3 style="color: var(--accent-pink);">Store Architecture Blueprint ↗</h3>
@@ -81,9 +82,15 @@ document.querySelector('#app').innerHTML = `
       </a>
 
       <a href="toppings.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
-        <img src="yuki_chi_topping_station.jpg" alt="Gourmet Toppings Bar" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
-        <h3 style="color: var(--accent-pink);">Gourmet Toppings & Heated Sauce Bar ↗</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">Heated drizzle wells, homemade mochis, fudge brownies & fruit compotes</p>
+        <img src="spacious_topping_bar.jpg" alt="Spacious Gourmet Toppings Bar" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Spacious Topping Island ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Spacious layout, heated copper drizzle wells, brownies & compotes</p>
+      </a>
+
+      <a href="customer-creations.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
+        <img src="customer_cup_brownie_pistachio.jpg" alt="Customer Creations" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Customer Creations Gallery ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Dual swirls, Matcha pistachio brownies & Strawberry Lychee cups</p>
       </a>
     </div>
   </section>

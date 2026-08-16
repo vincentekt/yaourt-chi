@@ -9,6 +9,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         interior: resolve(__dirname, 'interior.html'),
         toppings: resolve(__dirname, 'toppings.html'),
+        creations: resolve(__dirname, 'customer-creations.html'),
       },
     },
   },
