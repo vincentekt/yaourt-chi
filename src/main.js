@@ -25,10 +25,10 @@ document.querySelector('#app').innerHTML = `
       <div>
         <div class="hero-tag">Investment Opportunity • Saigon District 1</div>
         <h1 class="hero-title">
-          Bringing <span>Yo-Chi's Cult Froyo</span> to HCMC Japan Town
+          Bringing <span>Artisanal Self-Serve Froyo</span> to HCMC Japan Town
         </h1>
         <p class="hero-desc">
-          Yuki-Chi (雪知) is a high-margin, self-serve Acai & Frozen Yogurt bar replica of Singapore's famous Star Vista outlet, positioned directly in Saigon's Japan Town nightlife & foodie district.
+          Yuki-Chi (雪知) is a high-margin, self-serve Acai & Frozen Yogurt bar combining modern Japanese aesthetic minimalism with gourmet toppings, positioned directly in Saigon's vibrant Japan Town.
         </p>
         <div class="stats-bar">
           <div class="stat-item">
@@ -54,8 +54,8 @@ document.querySelector('#app').innerHTML = `
   <!-- Concept Section -->
   <section id="concept" class="section">
     <div class="section-header">
-      <h2>Star Vista Instagrammable Concept</h2>
-      <p>A aesthetic hybrid of Singapore's Yo-Chi self-serve bar & Japandi minimalism.</p>
+      <h2>Modern Japandi Self-Serve Experience</h2>
+      <p>A seamless fusion of customizable soft-serve superfoods and refined Japanese cafe design.</p>
     </div>
     <div class="grid-3">
       <div class="feature-card">
@@ -120,7 +120,7 @@ document.querySelector('#app').innerHTML = `
         </div>
 
         <div style="background: rgba(255, 107, 139, 0.08); padding: 1rem; border-radius: 12px; font-size: 0.85rem; color: var(--accent-pink);">
-          💡 <b>Benchmark:</b> Yo-Chi Singapore averages ~300g per bowl ($6.00 USD). Japan Town D1 location targets high foot-traffic expat & Gen Z crowd.
+          💡 <b>Industry Benchmark:</b> Premium self-serve froyo bars average ~280g–320g per bowl. Japan Town D1 location targets high foot-traffic expat & Gen Z consumer base.
         </div>
       </div>
 
