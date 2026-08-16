@@ -1,4 +1,4 @@
-/* empty css              */(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const e of t)if(e.type==="childList")for(const s of e.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&i(s)}).observe(document,{childList:!0,subtree:!0});function n(t){const e={};return t.integrity&&(e.integrity=t.integrity),t.referrerPolicy&&(e.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?e.credentials="include":t.crossOrigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function i(t){if(t.ep)return;t.ep=!0;const e=n(t);fetch(t.href,e)}})();document.querySelector("#app").innerHTML=`
+/* empty css              */(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))s(r);new MutationObserver(r=>{for(const a of r)if(a.type==="childList")for(const o of a.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&s(o)}).observe(document,{childList:!0,subtree:!0});function n(r){const a={};return r.integrity&&(a.integrity=r.integrity),r.referrerPolicy&&(a.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?a.credentials="include":r.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function s(r){if(r.ep)return;r.ep=!0;const a=n(r);fetch(r.href,a)}})();document.querySelector("#app").innerHTML=`
   <!-- Navbar -->
   <nav class="navbar">
     <a href="#" class="nav-logo">
@@ -14,7 +14,14 @@
       <li><a href="#sourcing">Procurement</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
     </ul>
-    <a href="#calculator" class="btn-primary">View Pitch Deck</a>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <div class="currency-switch-wrap" id="currency-switch">
+        <button class="curr-btn active" data-curr="VND">VND</button>
+        <button class="curr-btn" data-curr="USD">USD</button>
+        <button class="curr-btn" data-curr="SGD">SGD</button>
+      </div>
+      <a href="#calculator" class="btn-primary">View Pitch Deck</a>
+    </div>
   </nav>
 
   <!-- Hero Section -->
@@ -38,8 +45,8 @@
             <p>Target Payback</p>
           </div>
           <div class="stat-item">
-            <h3>49k VNĐ</h3>
-            <p>Price / 100g Cup</p>
+            <h3 id="hero-price">49,000 VNĐ</h3>
+            <p>Target Price / 100g Cup</p>
           </div>
         </div>
       </div>
@@ -139,7 +146,7 @@
           </div>
           <div class="metric-row">
             <span>Fixed OPEX (Rent, Staff, Utilities):</span>
-            <span style="color: #ef4444;">-170,000,000 VNĐ</span>
+            <span id="res-opex" style="color: #ef4444;">-170,000,000 VNĐ</span>
           </div>
         </div>
 
@@ -206,109 +213,114 @@
   <footer>
     <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Private & Confidential Investor Briefing.</p>
   </footer>
-`;const p=document.querySelector("#input-cups"),u=document.querySelector("#input-weight"),h=document.querySelector("#input-price"),g=document.querySelector("#val-cups"),b=document.querySelector("#val-weight"),f=document.querySelector("#val-price"),y=document.querySelector("#res-aov"),w=document.querySelector("#res-revenue"),C=document.querySelector("#res-cogs"),S=document.querySelector("#res-net"),x=document.querySelector("#res-payback");function o(r){return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ"}function c(){const r=parseInt(p.value),a=parseInt(u.value),n=parseInt(h.value);g.textContent=r,b.textContent=`${a}g`,f.textContent=o(n);const i=a/100*n,t=r*i*30,e=t*.31,d=t-e-17e7,l=d>0?(16e8/d).toFixed(1):"N/A";y.textContent=o(i),w.textContent=o(t),C.textContent=`-${o(e)}`,S.textContent=o(d),x.textContent=l!=="N/A"?`~${l} Months`:"Unprofitable"}p.addEventListener("input",c);u.addEventListener("input",c);h.addEventListener("input",c);c();const m={machines:`
-    <thead>
-      <tr>
-        <th>Tier / Model</th>
-        <th>Condition</th>
-        <th>Est. Price (VND/Unit)</th>
-        <th>Supplier & Link</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><b>Taylor C723 / C713</b> (USA)</td>
-        <td>1st Hand New</td>
-        <td>350,000,000 – 450,000,000 VNĐ</td>
-        <td><a href="https://beptoancau.com" target="_blank">Bếp Toàn Cầu (Taylor VN) ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>Space 6240 / Donper</b> (Heavy Duty)</td>
-        <td>1st Hand New</td>
-        <td>85,000,000 – 120,000,000 VNĐ</td>
-        <td><a href="https://italio.vn" target="_blank">Italio Vietnam ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>Taylor 336 / 339</b> (USA)</td>
-        <td>2nd Hand Refurbished</td>
-        <td>120,000,000 – 180,000,000 VNĐ</td>
-        <td><a href="https://dienmaycuhoanganh.com" target="_blank">Điện Máy Cũ Hoàng Anh ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>Hải Âu / Venus</b> (Local Standard)</td>
-        <td>1st Hand New</td>
-        <td>45,000,000 – 65,000,000 VNĐ</td>
-        <td><a href="https://haiau.com" target="_blank">Hải Âu Group ↗</a></td>
-      </tr>
-    </tbody>
-  `,ingredients:`
-    <thead>
-      <tr>
-        <th>Ingredient / Material</th>
-        <th>Unit Rate</th>
-        <th>Supplier Name</th>
-        <th>Supplier Link</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><b>Organic Acai Puree (Frozen 100g)</b></td>
-        <td>220,000 – 280,000 VNĐ / kg</td>
-        <td>Purple Food Vietnam</td>
-        <td><a href="https://purplefood.vn" target="_blank">PurpleFood.vn ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>PreGel Italian Froyo Base</b></td>
-        <td>280,000 – 380,000 VNĐ / kg</td>
-        <td>TIM Corp / Vua Kem</td>
-        <td><a href="https://tim-corp.com.vn" target="_blank">TIM Corp ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>Italio Yoggi Froyo Base</b></td>
-        <td>120,000 – 160,000 VNĐ / kg</td>
-        <td>Italio Vietnam</td>
-        <td><a href="https://italio.vn" target="_blank">Italio.vn ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>Italian 100% Pistachio Butter</b></td>
-        <td>750,000 – 950,000 VNĐ / kg</td>
-        <td>Vua Kem Distributor</td>
-        <td><a href="https://vuakem.com" target="_blank">VuaKem.com ↗</a></td>
-      </tr>
-    </tbody>
-  `,capex:`
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Details</th>
-        <th>Est. Budget (VND)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><b>Lease & Security Deposit</b></td>
-        <td>3 Months Deposit + 1st Month Rent (D1 Japan Town)</td>
-        <td>200,000,000 VNĐ</td>
-      </tr>
-      <tr>
-        <td><b>Renovation & Dispense Wall</b></td>
-        <td>Japandi interior, timber wall, lighting, HVAC, electrical 3-phase</td>
-        <td>500,000,000 VNĐ</td>
-      </tr>
-      <tr>
-        <td><b>3x Dispense & Freezing Machines</b></td>
-        <td>Combination of 1x Refurbished Taylor + 2x New Mid-Range</td>
-        <td>280,000,000 VNĐ</td>
-      </tr>
-      <tr>
-        <td><b>Refrigeration & Topping Bar</b></td>
-        <td>Drop-in cold wells, upright deep freezer, chill counter</td>
-        <td>120,000,000 VNĐ</td>
-      </tr>
-      <tr>
-        <td><b>1st Batch Inventory & Packaging</b></td>
-        <td>Acai, Froyo powder, milk, drizzles, 5k printed cups</td>
-        <td>94,250,000 VNĐ</td>
-      </tr>
-    </tbody>
-  `},v=document.querySelector("#tab-content");v.innerHTML=m.machines;document.querySelectorAll(".tab-btn").forEach(r=>{r.addEventListener("click",a=>{document.querySelectorAll(".tab-btn").forEach(i=>i.classList.remove("active")),a.target.classList.add("active");const n=a.target.getAttribute("data-tab");v.innerHTML=m[n]})});
+`;let d="VND";const f={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=f[d],n=i*e.rate;if(d==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(n))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(n)}const v=document.querySelector("#input-cups"),g=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),S=document.querySelector("#val-cups"),w=document.querySelector("#val-weight"),C=document.querySelector("#val-price"),x=document.querySelector("#res-aov"),D=document.querySelector("#res-revenue"),T=document.querySelector("#res-cogs"),h=document.querySelector("#res-opex"),k=document.querySelector("#res-net"),N=document.querySelector("#res-payback"),m=document.querySelector("#hero-price");function c(){const i=parseInt(v.value),e=parseInt(g.value),n=parseInt(b.value);S.textContent=i,w.textContent=`${e}g`,C.textContent=t(n),m&&(m.textContent=`${t(n)} / 100g`);const s=e/100*n,r=i*s*30,a=r*.31,o=17e7,l=r-a-o,u=l>0?(16e8/l).toFixed(1):"N/A";x.textContent=t(s),D.textContent=t(r),T.textContent=`-${t(a)}`,h&&(h.textContent=`-${t(o)}`),k.textContent=t(l),N.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}v.addEventListener("input",c);g.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(n=>n.classList.remove("active")),e.target.classList.add("active"),d=e.target.getAttribute("data-curr"),c(),p()})});const M=document.querySelector("#tab-content");let y="machines";function p(){const i=d,e={machines:`
+      <thead>
+        <tr>
+          <th>Tier / Model</th>
+          <th>Condition</th>
+          <th>Est. Price (${i}/Unit)</th>
+          <th>Supplier & Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Taylor C723 / C713</b> (USA)</td>
+          <td>1st Hand New</td>
+          <td>${t(35e7)} – ${t(45e7)}</td>
+          <td><a href="https://beptoancau.com" target="_blank">Bếp Toàn Cầu (Taylor VN) ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>Space 6240 / Donper</b> (Heavy Duty)</td>
+          <td>1st Hand New</td>
+          <td>${t(85e6)} – ${t(12e7)}</td>
+          <td><a href="https://italio.vn" target="_blank">Italio Vietnam ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>Taylor 336 / 339</b> (USA)</td>
+          <td>2nd Hand Refurbished</td>
+          <td>${t(12e7)} – ${t(18e7)}</td>
+          <td><a href="https://dienmaycuhoanganh.com" target="_blank">Điện Máy Cũ Hoàng Anh ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>Hải Âu / Venus</b> (Local Standard)</td>
+          <td>1st Hand New</td>
+          <td>${t(45e6)} – ${t(65e6)}</td>
+          <td><a href="https://haiau.com" target="_blank">Hải Âu Group ↗</a></td>
+        </tr>
+      </tbody>
+    `,ingredients:`
+      <thead>
+        <tr>
+          <th>Ingredient / Material</th>
+          <th>Unit Rate (${i})</th>
+          <th>Supplier Name</th>
+          <th>Supplier Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Organic Acai Puree (Frozen 100g)</b></td>
+          <td>${t(22e4)} – ${t(28e4)} / kg</td>
+          <td>Purple Food Vietnam</td>
+          <td><a href="https://purplefood.vn" target="_blank">PurpleFood.vn ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>PreGel Italian Froyo Base</b></td>
+          <td>${t(28e4)} – ${t(38e4)} / kg</td>
+          <td>TIM Corp / Vua Kem</td>
+          <td><a href="https://tim-corp.com.vn" target="_blank">TIM Corp ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>Italio Yoggi Froyo Base</b></td>
+          <td>${t(12e4)} – ${t(16e4)} / kg</td>
+          <td>Italio Vietnam</td>
+          <td><a href="https://italio.vn" target="_blank">Italio.vn ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>Italian 100% Pistachio Butter</b></td>
+          <td>${t(75e4)} – ${t(95e4)} / kg</td>
+          <td>Vua Kem Distributor</td>
+          <td><a href="https://vuakem.com" target="_blank">VuaKem.com ↗</a></td>
+        </tr>
+      </tbody>
+    `,capex:`
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Details</th>
+          <th>Est. Budget (${i})</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Lease & Security Deposit</b></td>
+          <td>3 Months Deposit + 1st Month Rent (D1 Japan Town)</td>
+          <td>${t(2e8)}</td>
+        </tr>
+        <tr>
+          <td><b>Renovation & Dispense Wall</b></td>
+          <td>Japandi interior, timber wall, lighting, HVAC, electrical 3-phase</td>
+          <td>${t(5e8)}</td>
+        </tr>
+        <tr>
+          <td><b>3x Dispense & Freezing Machines</b></td>
+          <td>Combination of 1x Refurbished Taylor + 2x New Mid-Range</td>
+          <td>${t(28e7)}</td>
+        </tr>
+        <tr>
+          <td><b>Refrigeration & Topping Bar</b></td>
+          <td>Drop-in cold wells, upright deep freezer, chill counter</td>
+          <td>${t(12e7)}</td>
+        </tr>
+        <tr>
+          <td><b>1st Batch Inventory & Packaging</b></td>
+          <td>Acai, Froyo powder, milk, drizzles, 5k printed cups</td>
+          <td>${t(9425e4)}</td>
+        </tr>
+        <tr style="background: rgba(255, 107, 139, 0.1);">
+          <td><b>TOTAL ESTIMATED CAPEX</b></td>
+          <td>Complete Turnkey Store Budget</td>
+          <td><b>${t(16e8)}</b></td>
+        </tr>
+      </tbody>
+    `};M.innerHTML=e[y]}document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll(".tab-btn").forEach(n=>n.classList.remove("active")),e.target.classList.add("active"),y=e.target.getAttribute("data-tab"),p()})});p();c();
