@@ -1,4 +1,4 @@
-/* empty css              */(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))o(r);new MutationObserver(r=>{for(const n of r)if(n.type==="childList")for(const s of n.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&o(s)}).observe(document,{childList:!0,subtree:!0});function a(r){const n={};return r.integrity&&(n.integrity=r.integrity),r.referrerPolicy&&(n.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?n.credentials="include":r.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function o(r){if(r.ep)return;r.ep=!0;const n=a(r);fetch(r.href,n)}})();document.querySelector("#app").innerHTML=`
+/* empty css              */(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const a of document.querySelectorAll('link[rel="modulepreload"]'))o(a);new MutationObserver(a=>{for(const n of a)if(n.type==="childList")for(const s of n.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&o(s)}).observe(document,{childList:!0,subtree:!0});function r(a){const n={};return a.integrity&&(n.integrity=a.integrity),a.referrerPolicy&&(n.referrerPolicy=a.referrerPolicy),a.crossOrigin==="use-credentials"?n.credentials="include":a.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function o(a){if(a.ep)return;a.ep=!0;const n=r(a);fetch(a.href,n)}})();document.querySelector("#app").innerHTML=`
   <!-- Navbar -->
   <nav class="navbar">
     <a href="#" class="nav-logo">
@@ -206,12 +206,50 @@
     </div>
   </section>
 
-  <!-- Roadmap Section -->
+  <!-- Strategic Growth Roadmap (Phase 1 Flagship vs Phase 2 Multi-Unit Scale) -->
   <section id="roadmap" class="section">
     <div class="section-header">
-      <h2>90-Day Execution Roadmap</h2>
-      <p>Structured launch timeline from lease signing to Grand Opening.</p>
+      <h2>Strategic Growth Roadmap & Expansion</h2>
+      <p>From Japan Town Flagship proof-of-concept (Phase 1) to multi-unit scale with a Centralized Commissary Kitchen (Phase 2).</p>
     </div>
+
+    <!-- Phase 1 vs Phase 2 Cards -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+      <!-- Phase 1 -->
+      <div class="feature-card" style="border-top: 4px solid var(--accent-pink);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span class="kanji-badge" style="background: var(--accent-pink);">PHASE 1</span>
+          <span style="color: var(--accent-pink); font-weight: 700; font-size: 0.85rem;">MONTHS 1 – 12</span>
+        </div>
+        <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem;">Japan Town Flagship & Proof of Concept</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.2rem;">Establish brand dominance in District 1, validate unit economics, and test customer flavor preferences.</p>
+        
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.9rem;">
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-pink);">✓</span> <b>Single Flagship Store:</b> 1 Rectangular shophouse in Japan Town (Hem 15B Le Thanh Ton).</li>
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-pink);">✓</span> <b>In-Store Prep:</b> Daily batching of mini mochis, fruit compotes, and liquid mixes done on-site.</li>
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-pink);">✓</span> <b>Target Unit Economics:</b> 180+ cups/day, ~31% COGS, 6–9 months payback.</li>
+        </ul>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="feature-card" style="border-top: 4px solid var(--accent-green);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span class="kanji-badge" style="background: var(--accent-green);">PHASE 2</span>
+          <span style="color: var(--accent-green); font-weight: 700; font-size: 0.85rem;">MONTHS 12 – 24</span>
+        </div>
+        <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem;">Centralized Kitchen & Multi-Store Expansion</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.2rem;">Scale to 4–6 high-traffic outlets (Thao Dien D2, Crescent Mall D7, D3, Landmark 81) supported by a Centralized Commissary Kitchen.</p>
+        
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.9rem;">
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-green);">★</span> <b>Centralized Commissary Kitchen:</b> Bulk production of brownie cubes, cookie cakes, mochis, and liquid bases.</li>
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-green);">★</span> <b>Disintermediate Middlemen:</b> Direct container-load imports of Brazilian acai pulp and Italian powders, cutting COGS from <b>31% down to ~22%</b>.</li>
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-green);">★</span> <b>Lean Satellite Store Model:</b> Outlets require zero back-of-house kitchen staff, reducing outlet CAPEX by 35% and labor to just 3 staff/shift.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Phase 1 90-Day Execution Steps -->
+    <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; text-align: center; color: var(--text-muted);">Phase 1 Launch Milestones</h3>
     <div class="grid-3">
       <div class="feature-card">
         <span style="color: var(--accent-pink); font-weight: 700;">MONTH 1</span>
@@ -235,7 +273,7 @@
   <footer>
     <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Private & Confidential Investor Briefing.</p>
   </footer>
-`;let d="VND";const y={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=y[d],a=i*e.rate;if(d==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(a))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(a)}const g=document.querySelector("#input-cups"),v=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),S=document.querySelector("#val-cups"),x=document.querySelector("#val-weight"),C=document.querySelector("#val-price"),w=document.querySelector("#res-aov"),T=document.querySelector("#res-revenue"),k=document.querySelector("#res-cogs"),m=document.querySelector("#res-opex"),M=document.querySelector("#res-net"),D=document.querySelector("#res-payback"),h=document.querySelector("#hero-price");function c(){const i=parseInt(g.value),e=parseInt(v.value),a=parseInt(b.value);S.textContent=i,x.textContent=`${e}g`,C.textContent=t(a),h&&(h.textContent=`${t(a)} / 100g`);const o=e/100*a,r=i*o*30,n=r*.31,s=17e7,l=r-n-s,u=l>0?(16e8/l).toFixed(1):"N/A";w.textContent=t(o),T.textContent=t(r),k.textContent=`-${t(n)}`,m&&(m.textContent=`-${t(s)}`),M.textContent=t(l),D.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}g.addEventListener("input",c);v.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(a=>a.classList.remove("active")),e.target.classList.add("active"),d=e.target.getAttribute("data-curr"),c(),p()})});const P=document.querySelector("#tab-content");let f="machines";function p(){const i=d,e={machines:`
+`;let l="VND";const y={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=y[l],r=i*e.rate;if(l==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(r)}const g=document.querySelector("#input-cups"),v=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),x=document.querySelector("#val-cups"),S=document.querySelector("#val-weight"),C=document.querySelector("#val-price"),w=document.querySelector("#res-aov"),k=document.querySelector("#res-revenue"),T=document.querySelector("#res-cogs"),m=document.querySelector("#res-opex"),P=document.querySelector("#res-net"),M=document.querySelector("#res-payback"),h=document.querySelector("#hero-price");function c(){const i=parseInt(g.value),e=parseInt(v.value),r=parseInt(b.value);x.textContent=i,S.textContent=`${e}g`,C.textContent=t(r),h&&(h.textContent=`${t(r)} / 100g`);const o=e/100*r,a=i*o*30,n=a*.31,s=17e7,d=a-n-s,u=d>0?(16e8/d).toFixed(1):"N/A";w.textContent=t(o),k.textContent=t(a),T.textContent=`-${t(n)}`,m&&(m.textContent=`-${t(s)}`),P.textContent=t(d),M.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}g.addEventListener("input",c);v.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(r=>r.classList.remove("active")),e.target.classList.add("active"),l=e.target.getAttribute("data-curr"),c(),p()})});const D=document.querySelector("#tab-content");let f="machines";function p(){const i=l,e={machines:`
       <thead>
         <tr>
           <th>Tier / Model</th>
@@ -385,4 +423,4 @@
           <td><b>${t(17e7)}</b></td>
         </tr>
       </tbody>
-    `},a=document.querySelector("#card-total-capex"),o=document.querySelector("#card-total-opex");a&&(a.textContent=t(16e8)),o&&(o.textContent=`${t(17e7)} / mo`),P.innerHTML=e[f]}document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll(".tab-btn").forEach(a=>a.classList.remove("active")),e.target.classList.add("active"),f=e.target.getAttribute("data-tab"),p()})});p();c();
+    `},r=document.querySelector("#card-total-capex"),o=document.querySelector("#card-total-opex");r&&(r.textContent=t(16e8)),o&&(o.textContent=`${t(17e7)} / mo`),D.innerHTML=e[f]}document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll(".tab-btn").forEach(r=>r.classList.remove("active")),e.target.classList.add("active"),f=e.target.getAttribute("data-tab"),p()})});p();c();
