@@ -208,12 +208,50 @@ document.querySelector('#app').innerHTML = `
     </div>
   </section>
 
-  <!-- Roadmap Section -->
+  <!-- Strategic Growth Roadmap (Phase 1 Flagship vs Phase 2 Multi-Unit Scale) -->
   <section id="roadmap" class="section">
     <div class="section-header">
-      <h2>90-Day Execution Roadmap</h2>
-      <p>Structured launch timeline from lease signing to Grand Opening.</p>
+      <h2>Strategic Growth Roadmap & Expansion</h2>
+      <p>From Japan Town Flagship proof-of-concept (Phase 1) to multi-unit scale with a Centralized Commissary Kitchen (Phase 2).</p>
     </div>
+
+    <!-- Phase 1 vs Phase 2 Cards -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+      <!-- Phase 1 -->
+      <div class="feature-card" style="border-top: 4px solid var(--accent-pink);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span class="kanji-badge" style="background: var(--accent-pink);">PHASE 1</span>
+          <span style="color: var(--accent-pink); font-weight: 700; font-size: 0.85rem;">MONTHS 1 – 12</span>
+        </div>
+        <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem;">Japan Town Flagship & Proof of Concept</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.2rem;">Establish brand dominance in District 1, validate unit economics, and test customer flavor preferences.</p>
+        
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.9rem;">
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-pink);">✓</span> <b>Single Flagship Store:</b> 1 Rectangular shophouse in Japan Town (Hem 15B Le Thanh Ton).</li>
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-pink);">✓</span> <b>In-Store Prep:</b> Daily batching of mini mochis, fruit compotes, and liquid mixes done on-site.</li>
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-pink);">✓</span> <b>Target Unit Economics:</b> 180+ cups/day, ~31% COGS, 6–9 months payback.</li>
+        </ul>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="feature-card" style="border-top: 4px solid var(--accent-green);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span class="kanji-badge" style="background: var(--accent-green);">PHASE 2</span>
+          <span style="color: var(--accent-green); font-weight: 700; font-size: 0.85rem;">MONTHS 12 – 24</span>
+        </div>
+        <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem;">Centralized Kitchen & Multi-Store Expansion</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.2rem;">Scale to 4–6 high-traffic outlets (Thao Dien D2, Crescent Mall D7, D3, Landmark 81) supported by a Centralized Commissary Kitchen.</p>
+        
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.9rem;">
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-green);">★</span> <b>Centralized Commissary Kitchen:</b> Bulk production of brownie cubes, cookie cakes, mochis, and liquid bases.</li>
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-green);">★</span> <b>Disintermediate Middlemen:</b> Direct container-load imports of Brazilian acai pulp and Italian powders, cutting COGS from <b>31% down to ~22%</b>.</li>
+          <li style="display: flex; gap: 10px;"><span style="color: var(--accent-green);">★</span> <b>Lean Satellite Store Model:</b> Outlets require zero back-of-house kitchen staff, reducing outlet CAPEX by 35% and labor to just 3 staff/shift.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Phase 1 90-Day Execution Steps -->
+    <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; text-align: center; color: var(--text-muted);">Phase 1 Launch Milestones</h3>
     <div class="grid-3">
       <div class="feature-card">
         <span style="color: var(--accent-pink); font-weight: 700;">MONTH 1</span>
