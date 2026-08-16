@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="hero-image-wrap">
-        <img src="/hero_bowl.jpg" alt="Acai Bowl Concept" class="hero-img" />
+        <img src="hero_bowl.jpg" alt="Acai Bowl Concept" class="hero-img" />
       </div>
     </div>
   </header>
@@ -71,7 +71,7 @@
       </div>
     </div>
     <div style="margin-top: 3rem; text-align: center;">
-      <img src="/store_mockup.jpg" alt="Yuki-Chi Store Interior Mockup" style="max-width: 100%; border-radius: 16px; border: 1px solid var(--border-color);" />
+      <img src="store_mockup.jpg" alt="Yuki-Chi Store Interior Mockup" style="max-width: 100%; border-radius: 16px; border: 1px solid var(--border-color);" />
     </div>
   </section>
 
