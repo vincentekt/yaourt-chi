@@ -166,17 +166,39 @@ document.querySelector('#app').innerHTML = `
     </div>
   </section>
 
-  <!-- Procurement & Machinery Tabs -->
+  <!-- Financials, CAPEX, OPEX & Procurement Tabs -->
   <section id="sourcing" class="section">
     <div class="section-header">
-      <h2>Equipment & Sourcing Directory</h2>
-      <p>Direct supplier quotes and first-hand vs second-hand comparison in HCMC.</p>
+      <h2>Financial Breakdown, CAPEX & OPEX</h2>
+      <p>Comprehensive cost model with itemized startup capital (CAPEX) and recurring monthly operating expenses (OPEX).</p>
+    </div>
+
+    <!-- Live Total Summary Cards -->
+    <div class="grid-3" style="margin-bottom: 2.5rem;">
+      <div class="feature-card" style="border-left: 4px solid var(--accent-pink);">
+        <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">TOTAL ESTIMATED CAPEX</span>
+        <h3 id="card-total-capex" style="color: var(--accent-pink); font-size: 1.9rem; margin-top: 0.3rem;">1,600,000,000 VNĐ</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;">Full turnkey setup (Fitout, Machines, Topping Bar, Deposit & Permits)</p>
+      </div>
+
+      <div class="feature-card" style="border-left: 4px solid var(--accent-gold);">
+        <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">MONTHLY FIXED OPEX</span>
+        <h3 id="card-total-opex" style="color: var(--accent-gold); font-size: 1.9rem; margin-top: 0.3rem;">170,000,000 VNĐ</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;">Rent, Store Manager + 6 Staff, Utilities, Marketing & Maintenance</p>
+      </div>
+
+      <div class="feature-card" style="border-left: 4px solid var(--accent-green);">
+        <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">COGS RUN RATE (VARIABLE)</span>
+        <h3 style="color: var(--accent-green); font-size: 1.9rem; margin-top: 0.3rem;">31.0%</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;">Raw ingredients, acai pulp, imported bases, packaging & toppings</p>
+      </div>
     </div>
 
     <div class="tabs-header">
-      <button class="tab-btn active" data-tab="machines">Dispense Machines</button>
-      <button class="tab-btn" data-tab="ingredients">Ingredients & Toppings</button>
-      <button class="tab-btn" data-tab="capex">CAPEX Budget</button>
+      <button class="tab-btn active" data-tab="capex">CAPEX Budget</button>
+      <button class="tab-btn" data-tab="opex">Monthly OPEX</button>
+      <button class="tab-btn" data-tab="machines">Dispense Machinery</button>
+      <button class="tab-btn" data-tab="ingredients">Ingredients & Sourcing</button>
     </div>
 
     <div class="table-wrap">
@@ -415,12 +437,58 @@ function renderTabs() {
         </tr>
         <tr style="background: rgba(255, 107, 139, 0.1);">
           <td><b>TOTAL ESTIMATED CAPEX</b></td>
-          <td>Complete Turnkey Store Budget</td>
+          <td>Complete Turnkey Store Startup Budget</td>
           <td><b>${formatCurrency(1600000000)}</b></td>
+        </tr>
+      </tbody>
+    `,
+    opex: `
+      <thead>
+        <tr>
+          <th>Operating Expense</th>
+          <th>Details & Staffing</th>
+          <th>Monthly Cost (${curr})</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Storefront Rent (Japan Town D1)</b></td>
+          <td>Ground floor 60–80 sqm shophouse in Hem 15B Le Thanh Ton area</td>
+          <td>${formatCurrency(75000000)}</td>
+        </tr>
+        <tr>
+          <td><b>Store Payroll (7 Employees)</b></td>
+          <td>1 Store Manager (18M) + 2 Kitchen Prep (18M) + 4 Shift Crew/Cashiers (28M) + Social/Bonus</td>
+          <td>${formatCurrency(70000000)}</td>
+        </tr>
+        <tr>
+          <td><b>Commercial Utilities</b></td>
+          <td>3-Phase Electricity for 3x continuous freezing machines, deep freezers, AC & water</td>
+          <td>${formatCurrency(25000000)}</td>
+        </tr>
+        <tr>
+          <td><b>Marketing & Local Collabs</b></td>
+          <td>TikTok & IG Reels influencer invitations, foodie collabs, Japan Town signage promo</td>
+          <td>${formatCurrency(30000000)}</td>
+        </tr>
+        <tr>
+          <td><b>Maintenance, Wastage & Buffer</b></td>
+          <td>Equipment sanitation, filter replacements, spare parts & POS software fees</td>
+          <td>${formatCurrency(15000000)}</td>
+        </tr>
+        <tr style="background: rgba(251, 191, 36, 0.1);">
+          <td><b>TOTAL MONTHLY FIXED OPEX</b></td>
+          <td>Recurring Monthly Overhead (Excluding Variable COGS)</td>
+          <td><b>${formatCurrency(170000000)}</b></td>
         </tr>
       </tbody>
     `
   };
+
+  const cardCapex = document.querySelector('#card-total-capex');
+  const cardOpex = document.querySelector('#card-total-opex');
+  if (cardCapex) cardCapex.textContent = formatCurrency(1600000000);
+  if (cardOpex) cardOpex.textContent = `${formatCurrency(170000000)} / mo`;
 
   tabContent.innerHTML = tabData[activeTab];
 }
