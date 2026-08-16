@@ -282,7 +282,7 @@
   <footer>
     <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Private & Confidential Investor Briefing.</p>
   </footer>
-`;let l="VND";const y={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=y[l],r=i*e.rate;if(l==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(r)}const g=document.querySelector("#input-cups"),v=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),x=document.querySelector("#val-cups"),S=document.querySelector("#val-weight"),w=document.querySelector("#val-price"),C=document.querySelector("#res-aov"),k=document.querySelector("#res-revenue"),T=document.querySelector("#res-cogs"),m=document.querySelector("#res-opex"),P=document.querySelector("#res-net"),M=document.querySelector("#res-payback"),h=document.querySelector("#hero-price");function c(){const i=parseInt(g.value),e=parseInt(v.value),r=parseInt(b.value);x.textContent=i,S.textContent=`${e}g`,w.textContent=t(r),h&&(h.textContent=`${t(r)} / 100g`);const o=e/100*r,a=i*o*30,n=a*.31,s=17e7,d=a-n-s,u=d>0?(16e8/d).toFixed(1):"N/A";C.textContent=t(o),k.textContent=t(a),T.textContent=`-${t(n)}`,m&&(m.textContent=`-${t(s)}`),P.textContent=t(d),M.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}g.addEventListener("input",c);v.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(r=>r.classList.remove("active")),e.target.classList.add("active"),l=e.target.getAttribute("data-curr"),c(),p()})});const D=document.querySelector("#tab-content");let f="machines";function p(){const i=l,e={machines:`
+`;let l="VND";const y={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=y[l],r=i*e.rate;if(l==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(r)}const g=document.querySelector("#input-cups"),v=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),x=document.querySelector("#val-cups"),S=document.querySelector("#val-weight"),w=document.querySelector("#val-price"),C=document.querySelector("#res-aov"),T=document.querySelector("#res-revenue"),k=document.querySelector("#res-cogs"),m=document.querySelector("#res-opex"),P=document.querySelector("#res-net"),M=document.querySelector("#res-payback"),h=document.querySelector("#hero-price");function c(){const i=parseInt(g.value),e=parseInt(v.value),r=parseInt(b.value);x.textContent=i,S.textContent=`${e}g`,w.textContent=t(r),h&&(h.textContent=`${t(r)} / 100g`);const o=e/100*r,a=i*o*30,n=a*.31,s=17e7,d=a-n-s,u=d>0?(16e8/d).toFixed(1):"N/A";C.textContent=t(o),T.textContent=t(a),k.textContent=`-${t(n)}`,m&&(m.textContent=`-${t(s)}`),P.textContent=t(d),M.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}g.addEventListener("input",c);v.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(r=>r.classList.remove("active")),e.target.classList.add("active"),l=e.target.getAttribute("data-curr"),c(),p()})});const D=document.querySelector("#tab-content");let f="machines";function p(){const i=l,e={machines:`
       <thead>
         <tr>
           <th>Tier / Model</th>
@@ -369,7 +369,12 @@
         <tr>
           <td><b>Renovation & Dispense Wall</b></td>
           <td>Japandi interior, timber wall, lighting, HVAC, electrical 3-phase</td>
-          <td>${t(5e8)}</td>
+          <td>${t(45e7)}</td>
+        </tr>
+        <tr>
+          <td><b>Guest Restroom & Plumbing Fitout</b></td>
+          <td>Full standalone toilet construction, septic connection, Toto/Inax sanitaries & ventilation</td>
+          <td>${t(5e7)}</td>
         </tr>
         <tr>
           <td><b>3x Dispense & Freezing Machines</b></td>
@@ -386,9 +391,14 @@
           <td>Acai, Froyo powder, milk, drizzles, 5k printed cups</td>
           <td>${t(9425e4)}</td>
         </tr>
+        <tr>
+          <td><b>POS, Permits & Working Buffer</b></td>
+          <td>Scale POS setup, ATVSTTP health permits & emergency reserve</td>
+          <td>${t(40575e4)}</td>
+        </tr>
         <tr style="background: rgba(255, 107, 139, 0.1);">
           <td><b>TOTAL ESTIMATED CAPEX</b></td>
-          <td>Complete Turnkey Store Startup Budget</td>
+          <td>Complete Turnkey Store Startup Budget (Including Restroom)</td>
           <td><b>${t(16e8)}</b></td>
         </tr>
       </tbody>
