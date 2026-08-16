@@ -16,7 +16,14 @@ document.querySelector('#app').innerHTML = `
       <li><a href="#sourcing">Procurement</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
     </ul>
-    <a href="#calculator" class="btn-primary">View Pitch Deck</a>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <div class="currency-switch-wrap" id="currency-switch">
+        <button class="curr-btn active" data-curr="VND">VND</button>
+        <button class="curr-btn" data-curr="USD">USD</button>
+        <button class="curr-btn" data-curr="SGD">SGD</button>
+      </div>
+      <a href="#calculator" class="btn-primary">View Pitch Deck</a>
+    </div>
   </nav>
 
   <!-- Hero Section -->
@@ -40,8 +47,8 @@ document.querySelector('#app').innerHTML = `
             <p>Target Payback</p>
           </div>
           <div class="stat-item">
-            <h3>49k VNĐ</h3>
-            <p>Price / 100g Cup</p>
+            <h3 id="hero-price">49,000 VNĐ</h3>
+            <p>Target Price / 100g Cup</p>
           </div>
         </div>
       </div>
@@ -141,7 +148,7 @@ document.querySelector('#app').innerHTML = `
           </div>
           <div class="metric-row">
             <span>Fixed OPEX (Rent, Staff, Utilities):</span>
-            <span style="color: #ef4444;">-170,000,000 VNĐ</span>
+            <span id="res-opex" style="color: #ef4444;">-170,000,000 VNĐ</span>
           </div>
         </div>
 
@@ -210,6 +217,28 @@ document.querySelector('#app').innerHTML = `
   </footer>
 `;
 
+// Currency Conversion State & Rates (1 USD = 25,400 VND, 1 SGD = 19,200 VND)
+let currentCurrency = 'VND';
+const rates = {
+  VND: { rate: 1, symbol: 'VNĐ', decimals: 0 },
+  USD: { rate: 1 / 25400, symbol: '$', decimals: 2, prefix: true },
+  SGD: { rate: 1 / 19200, symbol: 'S$', decimals: 2, prefix: true }
+};
+
+function formatCurrency(amountVND) {
+  const curr = rates[currentCurrency];
+  const converted = amountVND * curr.rate;
+  
+  if (currentCurrency === 'VND') {
+    return new Intl.NumberFormat('vi-VN').format(Math.round(converted)) + ' VNĐ';
+  } else if (curr.prefix) {
+    return curr.symbol + new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: curr.decimals,
+      maximumFractionDigits: curr.decimals
+    }).format(converted);
+  }
+}
+
 // Calculator Logic
 const inputCups = document.querySelector('#input-cups');
 const inputWeight = document.querySelector('#input-weight');
@@ -222,12 +251,10 @@ const valPrice = document.querySelector('#val-price');
 const resAov = document.querySelector('#res-aov');
 const resRevenue = document.querySelector('#res-revenue');
 const resCogs = document.querySelector('#res-cogs');
+const resOpex = document.querySelector('#res-opex');
 const resNet = document.querySelector('#res-net');
 const resPayback = document.querySelector('#res-payback');
-
-function formatVND(num) {
-  return new Intl.NumberFormat('vi-VN').format(Math.round(num)) + ' VNĐ';
-}
+const heroPrice = document.querySelector('#hero-price');
 
 function updateCalculator() {
   const cups = parseInt(inputCups.value);
@@ -236,149 +263,176 @@ function updateCalculator() {
 
   valCups.textContent = cups;
   valWeight.textContent = `${weight}g`;
-  valPrice.textContent = formatVND(pricePer100g);
+  valPrice.textContent = formatCurrency(pricePer100g);
+  if (heroPrice) heroPrice.textContent = `${formatCurrency(pricePer100g)} / 100g`;
 
-  const aov = (weight / 100) * pricePer100g;
-  const monthlyRevenue = cups * aov * 30;
-  const monthlyCogs = monthlyRevenue * 0.31;
-  const fixedOpex = 170000000; // Rent, staff, electric
-  const monthlyNet = monthlyRevenue - monthlyCogs - fixedOpex;
+  const aovVND = (weight / 100) * pricePer100g;
+  const monthlyRevenueVND = cups * aovVND * 30;
+  const monthlyCogsVND = monthlyRevenueVND * 0.31;
+  const fixedOpexVND = 170000000; // Rent, staff, electric (~$6,700 USD)
+  const monthlyNetVND = monthlyRevenueVND - monthlyCogsVND - fixedOpexVND;
   
-  const totalInvestment = 1600000000; // ~1.6 Billion VND average CAPEX
-  const paybackMonths = monthlyNet > 0 ? (totalInvestment / monthlyNet).toFixed(1) : 'N/A';
+  const totalInvestmentVND = 1600000000; // ~1.6 Billion VND average CAPEX (~$63,000 USD)
+  const paybackMonths = monthlyNetVND > 0 ? (totalInvestmentVND / monthlyNetVND).toFixed(1) : 'N/A';
 
-  resAov.textContent = formatVND(aov);
-  resRevenue.textContent = formatVND(monthlyRevenue);
-  resCogs.textContent = `-${formatVND(monthlyCogs)}`;
-  resNet.textContent = formatVND(monthlyNet);
+  resAov.textContent = formatCurrency(aovVND);
+  resRevenue.textContent = formatCurrency(monthlyRevenueVND);
+  resCogs.textContent = `-${formatCurrency(monthlyCogsVND)}`;
+  if (resOpex) resOpex.textContent = `-${formatCurrency(fixedOpexVND)}`;
+  resNet.textContent = formatCurrency(monthlyNetVND);
   resPayback.textContent = paybackMonths !== 'N/A' ? `~${paybackMonths} Months` : 'Unprofitable';
 }
 
 inputCups.addEventListener('input', updateCalculator);
 inputWeight.addEventListener('input', updateCalculator);
 inputPrice.addEventListener('input', updateCalculator);
-updateCalculator();
 
-// Tab Content Data & Logic
-const tabData = {
-  machines: `
-    <thead>
-      <tr>
-        <th>Tier / Model</th>
-        <th>Condition</th>
-        <th>Est. Price (VND/Unit)</th>
-        <th>Supplier & Link</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><b>Taylor C723 / C713</b> (USA)</td>
-        <td>1st Hand New</td>
-        <td>350,000,000 – 450,000,000 VNĐ</td>
-        <td><a href="https://beptoancau.com" target="_blank">Bếp Toàn Cầu (Taylor VN) ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>Space 6240 / Donper</b> (Heavy Duty)</td>
-        <td>1st Hand New</td>
-        <td>85,000,000 – 120,000,000 VNĐ</td>
-        <td><a href="https://italio.vn" target="_blank">Italio Vietnam ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>Taylor 336 / 339</b> (USA)</td>
-        <td>2nd Hand Refurbished</td>
-        <td>120,000,000 – 180,000,000 VNĐ</td>
-        <td><a href="https://dienmaycuhoanganh.com" target="_blank">Điện Máy Cũ Hoàng Anh ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>Hải Âu / Venus</b> (Local Standard)</td>
-        <td>1st Hand New</td>
-        <td>45,000,000 – 65,000,000 VNĐ</td>
-        <td><a href="https://haiau.com" target="_blank">Hải Âu Group ↗</a></td>
-      </tr>
-    </tbody>
-  `,
-  ingredients: `
-    <thead>
-      <tr>
-        <th>Ingredient / Material</th>
-        <th>Unit Rate</th>
-        <th>Supplier Name</th>
-        <th>Supplier Link</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><b>Organic Acai Puree (Frozen 100g)</b></td>
-        <td>220,000 – 280,000 VNĐ / kg</td>
-        <td>Purple Food Vietnam</td>
-        <td><a href="https://purplefood.vn" target="_blank">PurpleFood.vn ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>PreGel Italian Froyo Base</b></td>
-        <td>280,000 – 380,000 VNĐ / kg</td>
-        <td>TIM Corp / Vua Kem</td>
-        <td><a href="https://tim-corp.com.vn" target="_blank">TIM Corp ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>Italio Yoggi Froyo Base</b></td>
-        <td>120,000 – 160,000 VNĐ / kg</td>
-        <td>Italio Vietnam</td>
-        <td><a href="https://italio.vn" target="_blank">Italio.vn ↗</a></td>
-      </tr>
-      <tr>
-        <td><b>Italian 100% Pistachio Butter</b></td>
-        <td>750,000 – 950,000 VNĐ / kg</td>
-        <td>Vua Kem Distributor</td>
-        <td><a href="https://vuakem.com" target="_blank">VuaKem.com ↗</a></td>
-      </tr>
-    </tbody>
-  `,
-  capex: `
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Details</th>
-        <th>Est. Budget (VND)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><b>Lease & Security Deposit</b></td>
-        <td>3 Months Deposit + 1st Month Rent (D1 Japan Town)</td>
-        <td>200,000,000 VNĐ</td>
-      </tr>
-      <tr>
-        <td><b>Renovation & Dispense Wall</b></td>
-        <td>Japandi interior, timber wall, lighting, HVAC, electrical 3-phase</td>
-        <td>500,000,000 VNĐ</td>
-      </tr>
-      <tr>
-        <td><b>3x Dispense & Freezing Machines</b></td>
-        <td>Combination of 1x Refurbished Taylor + 2x New Mid-Range</td>
-        <td>280,000,000 VNĐ</td>
-      </tr>
-      <tr>
-        <td><b>Refrigeration & Topping Bar</b></td>
-        <td>Drop-in cold wells, upright deep freezer, chill counter</td>
-        <td>120,000,000 VNĐ</td>
-      </tr>
-      <tr>
-        <td><b>1st Batch Inventory & Packaging</b></td>
-        <td>Acai, Froyo powder, milk, drizzles, 5k printed cups</td>
-        <td>94,250,000 VNĐ</td>
-      </tr>
-    </tbody>
-  `
-};
+// Currency Switcher Event Listeners
+document.querySelectorAll('#currency-switch .curr-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    document.querySelectorAll('#currency-switch .curr-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    currentCurrency = e.target.getAttribute('data-curr');
+    updateCalculator();
+    renderTabs();
+  });
+});
 
+
+// Dynamic Tab Rendering with Currency Conversion
 const tabContent = document.querySelector('#tab-content');
-tabContent.innerHTML = tabData.machines;
+let activeTab = 'machines';
+
+function renderTabs() {
+  const curr = currentCurrency;
+
+  const tabData = {
+    machines: `
+      <thead>
+        <tr>
+          <th>Tier / Model</th>
+          <th>Condition</th>
+          <th>Est. Price (${curr}/Unit)</th>
+          <th>Supplier & Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Taylor C723 / C713</b> (USA)</td>
+          <td>1st Hand New</td>
+          <td>${formatCurrency(350000000)} – ${formatCurrency(450000000)}</td>
+          <td><a href="https://beptoancau.com" target="_blank">Bếp Toàn Cầu (Taylor VN) ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>Space 6240 / Donper</b> (Heavy Duty)</td>
+          <td>1st Hand New</td>
+          <td>${formatCurrency(85000000)} – ${formatCurrency(120000000)}</td>
+          <td><a href="https://italio.vn" target="_blank">Italio Vietnam ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>Taylor 336 / 339</b> (USA)</td>
+          <td>2nd Hand Refurbished</td>
+          <td>${formatCurrency(120000000)} – ${formatCurrency(180000000)}</td>
+          <td><a href="https://dienmaycuhoanganh.com" target="_blank">Điện Máy Cũ Hoàng Anh ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>Hải Âu / Venus</b> (Local Standard)</td>
+          <td>1st Hand New</td>
+          <td>${formatCurrency(45000000)} – ${formatCurrency(65000000)}</td>
+          <td><a href="https://haiau.com" target="_blank">Hải Âu Group ↗</a></td>
+        </tr>
+      </tbody>
+    `,
+    ingredients: `
+      <thead>
+        <tr>
+          <th>Ingredient / Material</th>
+          <th>Unit Rate (${curr})</th>
+          <th>Supplier Name</th>
+          <th>Supplier Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Organic Acai Puree (Frozen 100g)</b></td>
+          <td>${formatCurrency(220000)} – ${formatCurrency(280000)} / kg</td>
+          <td>Purple Food Vietnam</td>
+          <td><a href="https://purplefood.vn" target="_blank">PurpleFood.vn ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>PreGel Italian Froyo Base</b></td>
+          <td>${formatCurrency(280000)} – ${formatCurrency(380000)} / kg</td>
+          <td>TIM Corp / Vua Kem</td>
+          <td><a href="https://tim-corp.com.vn" target="_blank">TIM Corp ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>Italio Yoggi Froyo Base</b></td>
+          <td>${formatCurrency(120000)} – ${formatCurrency(160000)} / kg</td>
+          <td>Italio Vietnam</td>
+          <td><a href="https://italio.vn" target="_blank">Italio.vn ↗</a></td>
+        </tr>
+        <tr>
+          <td><b>Italian 100% Pistachio Butter</b></td>
+          <td>${formatCurrency(750000)} – ${formatCurrency(950000)} / kg</td>
+          <td>Vua Kem Distributor</td>
+          <td><a href="https://vuakem.com" target="_blank">VuaKem.com ↗</a></td>
+        </tr>
+      </tbody>
+    `,
+    capex: `
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Details</th>
+          <th>Est. Budget (${curr})</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Lease & Security Deposit</b></td>
+          <td>3 Months Deposit + 1st Month Rent (D1 Japan Town)</td>
+          <td>${formatCurrency(200000000)}</td>
+        </tr>
+        <tr>
+          <td><b>Renovation & Dispense Wall</b></td>
+          <td>Japandi interior, timber wall, lighting, HVAC, electrical 3-phase</td>
+          <td>${formatCurrency(500000000)}</td>
+        </tr>
+        <tr>
+          <td><b>3x Dispense & Freezing Machines</b></td>
+          <td>Combination of 1x Refurbished Taylor + 2x New Mid-Range</td>
+          <td>${formatCurrency(280000000)}</td>
+        </tr>
+        <tr>
+          <td><b>Refrigeration & Topping Bar</b></td>
+          <td>Drop-in cold wells, upright deep freezer, chill counter</td>
+          <td>${formatCurrency(120000000)}</td>
+        </tr>
+        <tr>
+          <td><b>1st Batch Inventory & Packaging</b></td>
+          <td>Acai, Froyo powder, milk, drizzles, 5k printed cups</td>
+          <td>${formatCurrency(94250000)}</td>
+        </tr>
+        <tr style="background: rgba(255, 107, 139, 0.1);">
+          <td><b>TOTAL ESTIMATED CAPEX</b></td>
+          <td>Complete Turnkey Store Budget</td>
+          <td><b>${formatCurrency(1600000000)}</b></td>
+        </tr>
+      </tbody>
+    `
+  };
+
+  tabContent.innerHTML = tabData[activeTab];
+}
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     e.target.classList.add('active');
-    const tabKey = e.target.getAttribute('data-tab');
-    tabContent.innerHTML = tabData[tabKey];
+    activeTab = e.target.getAttribute('data-tab');
+    renderTabs();
   });
 });
+
+renderTabs();
+updateCalculator();

@@ -97,6 +97,37 @@ h1, h2, h3, h4 {
   color: var(--accent-pink);
 }
 
+.currency-switch-wrap {
+  display: flex;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.curr-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.curr-btn.active {
+  background: var(--accent-pink);
+  color: white;
+  box-shadow: 0 2px 8px var(--accent-pink-glow);
+}
+
+.curr-btn:hover:not(.active) {
+  color: white;
+}
+
 .btn-primary {
   background: linear-gradient(135deg, #ff6b8b 0%, #ff477e 100%);
   color: white;
