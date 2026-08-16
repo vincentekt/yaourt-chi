@@ -3,26 +3,35 @@ import './style.css';
 document.querySelector('#app').innerHTML = `
   <!-- Navbar -->
   <nav class="navbar">
-    <a href="#" class="nav-logo">
-      <span>Yuki-Chi</span>
-      <span class="kanji-badge">雪知</span>
-    </a>
+    <div class="nav-brand-wrap">
+      <a href="#" class="nav-logo">
+        <span>Yuki-Chi</span>
+        <span class="kanji-badge">雪知</span>
+      </a>
+    </div>
+
     <ul class="nav-links">
       <li><a href="#concept">Concept</a></li>
-      <li><a href="interior.html">Interior Renders</a></li>
-      <li><a href="toppings.html">Toppings & Taps</a></li>
-      <li><a href="customer-creations.html">Customer Creations</a></li>
+      <li class="nav-dropdown-item">
+        <a href="interior.html" class="dropdown-trigger">Galleries ▾</a>
+        <div class="dropdown-menu">
+          <a href="interior.html">🏛️ Store Architecture</a>
+          <a href="toppings.html">🍓 Toppings & Sauce Bar</a>
+          <a href="customer-creations.html">🍨 Customer Creations</a>
+        </div>
+      </li>
       <li><a href="#calculator">ROI Calculator</a></li>
-      <li><a href="#sourcing">Procurement</a></li>
-      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#sourcing">Financials & Sourcing</a></li>
+      <li><a href="#roadmap">Growth Roadmap</a></li>
     </ul>
-    <div style="display: flex; align-items: center; gap: 1rem;">
+
+    <div class="nav-actions">
       <div class="currency-switch-wrap" id="currency-switch">
         <button class="curr-btn active" data-curr="VND">VND</button>
         <button class="curr-btn" data-curr="USD">USD</button>
         <button class="curr-btn" data-curr="SGD">SGD</button>
       </div>
-      <a href="#calculator" class="btn-primary">View Pitch Deck</a>
+      <a href="#calculator" class="btn-primary nav-cta">View Pitch Deck</a>
     </div>
   </nav>
 
