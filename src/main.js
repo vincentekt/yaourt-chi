@@ -465,7 +465,12 @@ function renderTabs() {
         <tr>
           <td><b>Renovation & Dispense Wall</b></td>
           <td>Japandi interior, timber wall, lighting, HVAC, electrical 3-phase</td>
-          <td>${formatCurrency(500000000)}</td>
+          <td>${formatCurrency(450000000)}</td>
+        </tr>
+        <tr>
+          <td><b>Guest Restroom & Plumbing Fitout</b></td>
+          <td>Full standalone toilet construction, septic connection, Toto/Inax sanitaries & ventilation</td>
+          <td>${formatCurrency(50000000)}</td>
         </tr>
         <tr>
           <td><b>3x Dispense & Freezing Machines</b></td>
@@ -482,9 +487,14 @@ function renderTabs() {
           <td>Acai, Froyo powder, milk, drizzles, 5k printed cups</td>
           <td>${formatCurrency(94250000)}</td>
         </tr>
+        <tr>
+          <td><b>POS, Permits & Working Buffer</b></td>
+          <td>Scale POS setup, ATVSTTP health permits & emergency reserve</td>
+          <td>${formatCurrency(405750000)}</td>
+        </tr>
         <tr style="background: rgba(255, 107, 139, 0.1);">
           <td><b>TOTAL ESTIMATED CAPEX</b></td>
-          <td>Complete Turnkey Store Startup Budget</td>
+          <td>Complete Turnkey Store Startup Budget (Including Restroom)</td>
           <td><b>${formatCurrency(1600000000)}</b></td>
         </tr>
       </tbody>
