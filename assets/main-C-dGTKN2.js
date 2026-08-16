@@ -1,4 +1,4 @@
-/* empty css              */(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))r(t);new MutationObserver(t=>{for(const e of t)if(e.type==="childList")for(const s of e.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&r(s)}).observe(document,{childList:!0,subtree:!0});function n(t){const e={};return t.integrity&&(e.integrity=t.integrity),t.referrerPolicy&&(e.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?e.credentials="include":t.crossOrigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function r(t){if(t.ep)return;t.ep=!0;const e=n(t);fetch(t.href,e)}})();document.querySelector("#app").innerHTML=`
+/* empty css              */(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const e of t)if(e.type==="childList")for(const s of e.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&i(s)}).observe(document,{childList:!0,subtree:!0});function n(t){const e={};return t.integrity&&(e.integrity=t.integrity),t.referrerPolicy&&(e.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?e.credentials="include":t.crossOrigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function i(t){if(t.ep)return;t.ep=!0;const e=n(t);fetch(t.href,e)}})();document.querySelector("#app").innerHTML=`
   <!-- Navbar -->
   <nav class="navbar">
     <a href="#" class="nav-logo">
@@ -9,6 +9,7 @@
       <li><a href="#concept">Concept</a></li>
       <li><a href="interior.html">Interior Renders</a></li>
       <li><a href="toppings.html">Toppings & Taps</a></li>
+      <li><a href="customer-creations.html">Customer Creations</a></li>
       <li><a href="#calculator">ROI Calculator</a></li>
       <li><a href="#sourcing">Procurement</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
@@ -43,7 +44,7 @@
         </div>
       </div>
       <div class="hero-image-wrap">
-        <img src="hero_bowl.jpg" alt="Acai Bowl Concept" class="hero-img" />
+        <img src="customer_cup_dual_flavor.jpg" alt="Acai Bowl Concept" class="hero-img" />
       </div>
     </div>
   </header>
@@ -67,11 +68,11 @@
       </div>
       <div class="feature-card">
         <div class="card-icon">🍓</div>
-        <h3>360° Cold Topping Island</h3>
-        <p>White terrazzo island with 24+ refrigerated topping wells featuring Japanese mochi, fresh berries & warm pistachio drizzle taps.</p>
+        <h3>Spacious Island Topping Bar</h3>
+        <p>Calacatta marble island with spacious ceramic bowls, mini mochis, brownies, and warm copper drizzle wells.</p>
       </div>
     </div>
-    <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+    <div class="grid-3" style="margin-top: 3rem;">
       <a href="interior.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
         <img src="yuki_chi_store_complete.jpg" alt="Interior Architecture" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
         <h3 style="color: var(--accent-pink);">Store Architecture Blueprint ↗</h3>
@@ -79,9 +80,15 @@
       </a>
 
       <a href="toppings.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
-        <img src="yuki_chi_topping_station.jpg" alt="Gourmet Toppings Bar" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
-        <h3 style="color: var(--accent-pink);">Gourmet Toppings & Heated Sauce Bar ↗</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">Heated drizzle wells, homemade mochis, fudge brownies & fruit compotes</p>
+        <img src="spacious_topping_bar.jpg" alt="Spacious Gourmet Toppings Bar" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Spacious Topping Island ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Spacious layout, heated copper drizzle wells, brownies & compotes</p>
+      </a>
+
+      <a href="customer-creations.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
+        <img src="customer_cup_brownie_pistachio.jpg" alt="Customer Creations" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Customer Creations Gallery ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Dual swirls, Matcha pistachio brownies & Strawberry Lychee cups</p>
       </a>
     </div>
   </section>
@@ -199,7 +206,7 @@
   <footer>
     <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Private & Confidential Investor Briefing.</p>
   </footer>
-`;const p=document.querySelector("#input-cups"),u=document.querySelector("#input-weight"),h=document.querySelector("#input-price"),v=document.querySelector("#val-cups"),b=document.querySelector("#val-weight"),f=document.querySelector("#val-price"),y=document.querySelector("#res-aov"),C=document.querySelector("#res-revenue"),w=document.querySelector("#res-cogs"),S=document.querySelector("#res-net"),N=document.querySelector("#res-payback");function o(i){return new Intl.NumberFormat("vi-VN").format(Math.round(i))+" VNĐ"}function d(){const i=parseInt(p.value),a=parseInt(u.value),n=parseInt(h.value);v.textContent=i,b.textContent=`${a}g`,f.textContent=o(n);const r=a/100*n,t=i*r*30,e=t*.31,c=t-e-17e7,l=c>0?(16e8/c).toFixed(1):"N/A";y.textContent=o(r),C.textContent=o(t),w.textContent=`-${o(e)}`,S.textContent=o(c),N.textContent=l!=="N/A"?`~${l} Months`:"Unprofitable"}p.addEventListener("input",d);u.addEventListener("input",d);h.addEventListener("input",d);d();const g={machines:`
+`;const p=document.querySelector("#input-cups"),u=document.querySelector("#input-weight"),h=document.querySelector("#input-price"),g=document.querySelector("#val-cups"),b=document.querySelector("#val-weight"),y=document.querySelector("#val-price"),f=document.querySelector("#res-aov"),C=document.querySelector("#res-revenue"),w=document.querySelector("#res-cogs"),S=document.querySelector("#res-net"),N=document.querySelector("#res-payback");function o(r){return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ"}function c(){const r=parseInt(p.value),a=parseInt(u.value),n=parseInt(h.value);g.textContent=r,b.textContent=`${a}g`,y.textContent=o(n);const i=a/100*n,t=r*i*30,e=t*.31,d=t-e-17e7,l=d>0?(16e8/d).toFixed(1):"N/A";f.textContent=o(i),C.textContent=o(t),w.textContent=`-${o(e)}`,S.textContent=o(d),N.textContent=l!=="N/A"?`~${l} Months`:"Unprofitable"}p.addEventListener("input",c);u.addEventListener("input",c);h.addEventListener("input",c);c();const m={machines:`
     <thead>
       <tr>
         <th>Tier / Model</th>
@@ -304,4 +311,4 @@
         <td>94,250,000 VNĐ</td>
       </tr>
     </tbody>
-  `},m=document.querySelector("#tab-content");m.innerHTML=g.machines;document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",a=>{document.querySelectorAll(".tab-btn").forEach(r=>r.classList.remove("active")),a.target.classList.add("active");const n=a.target.getAttribute("data-tab");m.innerHTML=g[n]})});
+  `},v=document.querySelector("#tab-content");v.innerHTML=m.machines;document.querySelectorAll(".tab-btn").forEach(r=>{r.addEventListener("click",a=>{document.querySelectorAll(".tab-btn").forEach(i=>i.classList.remove("active")),a.target.classList.add("active");const n=a.target.getAttribute("data-tab");v.innerHTML=m[n]})});
