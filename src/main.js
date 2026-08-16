@@ -76,9 +76,9 @@ document.querySelector('#app').innerHTML = `
     </div>
     <div class="grid-3" style="margin-top: 3rem;">
       <a href="interior.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
-        <img src="yuki_chi_store_complete.jpg" alt="Interior Architecture" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <img src="shophouse_store_interior.jpg" alt="Interior Architecture" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
         <h3 style="color: var(--accent-pink);">Store Architecture Blueprint ↗</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">Fluted timber dispense wall, Japandi dining & integrated toppings island</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Linear rectangular shophouse, single continuous bar & Japandi dining</p>
       </a>
 
       <a href="toppings.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
