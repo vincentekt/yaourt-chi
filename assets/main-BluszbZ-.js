@@ -1,4 +1,4 @@
-/* empty css              */(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))s(r);new MutationObserver(r=>{for(const a of r)if(a.type==="childList")for(const o of a.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&s(o)}).observe(document,{childList:!0,subtree:!0});function n(r){const a={};return r.integrity&&(a.integrity=r.integrity),r.referrerPolicy&&(a.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?a.credentials="include":r.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function s(r){if(r.ep)return;r.ep=!0;const a=n(r);fetch(r.href,a)}})();document.querySelector("#app").innerHTML=`
+/* empty css              */(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))o(r);new MutationObserver(r=>{for(const n of r)if(n.type==="childList")for(const s of n.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&o(s)}).observe(document,{childList:!0,subtree:!0});function a(r){const n={};return r.integrity&&(n.integrity=r.integrity),r.referrerPolicy&&(n.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?n.credentials="include":r.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function o(r){if(r.ep)return;r.ep=!0;const n=a(r);fetch(r.href,n)}})();document.querySelector("#app").innerHTML=`
   <!-- Navbar -->
   <nav class="navbar">
     <a href="#" class="nav-logo">
@@ -164,17 +164,39 @@
     </div>
   </section>
 
-  <!-- Procurement & Machinery Tabs -->
+  <!-- Financials, CAPEX, OPEX & Procurement Tabs -->
   <section id="sourcing" class="section">
     <div class="section-header">
-      <h2>Equipment & Sourcing Directory</h2>
-      <p>Direct supplier quotes and first-hand vs second-hand comparison in HCMC.</p>
+      <h2>Financial Breakdown, CAPEX & OPEX</h2>
+      <p>Comprehensive cost model with itemized startup capital (CAPEX) and recurring monthly operating expenses (OPEX).</p>
+    </div>
+
+    <!-- Live Total Summary Cards -->
+    <div class="grid-3" style="margin-bottom: 2.5rem;">
+      <div class="feature-card" style="border-left: 4px solid var(--accent-pink);">
+        <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">TOTAL ESTIMATED CAPEX</span>
+        <h3 id="card-total-capex" style="color: var(--accent-pink); font-size: 1.9rem; margin-top: 0.3rem;">1,600,000,000 VNĐ</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;">Full turnkey setup (Fitout, Machines, Topping Bar, Deposit & Permits)</p>
+      </div>
+
+      <div class="feature-card" style="border-left: 4px solid var(--accent-gold);">
+        <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">MONTHLY FIXED OPEX</span>
+        <h3 id="card-total-opex" style="color: var(--accent-gold); font-size: 1.9rem; margin-top: 0.3rem;">170,000,000 VNĐ</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;">Rent, Store Manager + 6 Staff, Utilities, Marketing & Maintenance</p>
+      </div>
+
+      <div class="feature-card" style="border-left: 4px solid var(--accent-green);">
+        <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">COGS RUN RATE (VARIABLE)</span>
+        <h3 style="color: var(--accent-green); font-size: 1.9rem; margin-top: 0.3rem;">31.0%</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;">Raw ingredients, acai pulp, imported bases, packaging & toppings</p>
+      </div>
     </div>
 
     <div class="tabs-header">
-      <button class="tab-btn active" data-tab="machines">Dispense Machines</button>
-      <button class="tab-btn" data-tab="ingredients">Ingredients & Toppings</button>
-      <button class="tab-btn" data-tab="capex">CAPEX Budget</button>
+      <button class="tab-btn active" data-tab="capex">CAPEX Budget</button>
+      <button class="tab-btn" data-tab="opex">Monthly OPEX</button>
+      <button class="tab-btn" data-tab="machines">Dispense Machinery</button>
+      <button class="tab-btn" data-tab="ingredients">Ingredients & Sourcing</button>
     </div>
 
     <div class="table-wrap">
@@ -213,7 +235,7 @@
   <footer>
     <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Private & Confidential Investor Briefing.</p>
   </footer>
-`;let d="VND";const f={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=f[d],n=i*e.rate;if(d==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(n))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(n)}const v=document.querySelector("#input-cups"),g=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),S=document.querySelector("#val-cups"),w=document.querySelector("#val-weight"),C=document.querySelector("#val-price"),x=document.querySelector("#res-aov"),D=document.querySelector("#res-revenue"),T=document.querySelector("#res-cogs"),h=document.querySelector("#res-opex"),k=document.querySelector("#res-net"),N=document.querySelector("#res-payback"),m=document.querySelector("#hero-price");function c(){const i=parseInt(v.value),e=parseInt(g.value),n=parseInt(b.value);S.textContent=i,w.textContent=`${e}g`,C.textContent=t(n),m&&(m.textContent=`${t(n)} / 100g`);const s=e/100*n,r=i*s*30,a=r*.31,o=17e7,l=r-a-o,u=l>0?(16e8/l).toFixed(1):"N/A";x.textContent=t(s),D.textContent=t(r),T.textContent=`-${t(a)}`,h&&(h.textContent=`-${t(o)}`),k.textContent=t(l),N.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}v.addEventListener("input",c);g.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(n=>n.classList.remove("active")),e.target.classList.add("active"),d=e.target.getAttribute("data-curr"),c(),p()})});const M=document.querySelector("#tab-content");let y="machines";function p(){const i=d,e={machines:`
+`;let d="VND";const y={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=y[d],a=i*e.rate;if(d==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(a))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(a)}const g=document.querySelector("#input-cups"),v=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),S=document.querySelector("#val-cups"),x=document.querySelector("#val-weight"),C=document.querySelector("#val-price"),w=document.querySelector("#res-aov"),T=document.querySelector("#res-revenue"),k=document.querySelector("#res-cogs"),m=document.querySelector("#res-opex"),M=document.querySelector("#res-net"),D=document.querySelector("#res-payback"),h=document.querySelector("#hero-price");function c(){const i=parseInt(g.value),e=parseInt(v.value),a=parseInt(b.value);S.textContent=i,x.textContent=`${e}g`,C.textContent=t(a),h&&(h.textContent=`${t(a)} / 100g`);const o=e/100*a,r=i*o*30,n=r*.31,s=17e7,l=r-n-s,u=l>0?(16e8/l).toFixed(1):"N/A";w.textContent=t(o),T.textContent=t(r),k.textContent=`-${t(n)}`,m&&(m.textContent=`-${t(s)}`),M.textContent=t(l),D.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}g.addEventListener("input",c);v.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(a=>a.classList.remove("active")),e.target.classList.add("active"),d=e.target.getAttribute("data-curr"),c(),p()})});const P=document.querySelector("#tab-content");let f="machines";function p(){const i=d,e={machines:`
       <thead>
         <tr>
           <th>Tier / Model</th>
@@ -319,8 +341,48 @@
         </tr>
         <tr style="background: rgba(255, 107, 139, 0.1);">
           <td><b>TOTAL ESTIMATED CAPEX</b></td>
-          <td>Complete Turnkey Store Budget</td>
+          <td>Complete Turnkey Store Startup Budget</td>
           <td><b>${t(16e8)}</b></td>
         </tr>
       </tbody>
-    `};M.innerHTML=e[y]}document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll(".tab-btn").forEach(n=>n.classList.remove("active")),e.target.classList.add("active"),y=e.target.getAttribute("data-tab"),p()})});p();c();
+    `,opex:`
+      <thead>
+        <tr>
+          <th>Operating Expense</th>
+          <th>Details & Staffing</th>
+          <th>Monthly Cost (${i})</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Storefront Rent (Japan Town D1)</b></td>
+          <td>Ground floor 60–80 sqm shophouse in Hem 15B Le Thanh Ton area</td>
+          <td>${t(75e6)}</td>
+        </tr>
+        <tr>
+          <td><b>Store Payroll (7 Employees)</b></td>
+          <td>1 Store Manager (18M) + 2 Kitchen Prep (18M) + 4 Shift Crew/Cashiers (28M) + Social/Bonus</td>
+          <td>${t(7e7)}</td>
+        </tr>
+        <tr>
+          <td><b>Commercial Utilities</b></td>
+          <td>3-Phase Electricity for 3x continuous freezing machines, deep freezers, AC & water</td>
+          <td>${t(25e6)}</td>
+        </tr>
+        <tr>
+          <td><b>Marketing & Local Collabs</b></td>
+          <td>TikTok & IG Reels influencer invitations, foodie collabs, Japan Town signage promo</td>
+          <td>${t(3e7)}</td>
+        </tr>
+        <tr>
+          <td><b>Maintenance, Wastage & Buffer</b></td>
+          <td>Equipment sanitation, filter replacements, spare parts & POS software fees</td>
+          <td>${t(15e6)}</td>
+        </tr>
+        <tr style="background: rgba(251, 191, 36, 0.1);">
+          <td><b>TOTAL MONTHLY FIXED OPEX</b></td>
+          <td>Recurring Monthly Overhead (Excluding Variable COGS)</td>
+          <td><b>${t(17e7)}</b></td>
+        </tr>
+      </tbody>
+    `},a=document.querySelector("#card-total-capex"),o=document.querySelector("#card-total-opex");a&&(a.textContent=t(16e8)),o&&(o.textContent=`${t(17e7)} / mo`),P.innerHTML=e[f]}document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll(".tab-btn").forEach(a=>a.classList.remove("active")),e.target.classList.add("active"),f=e.target.getAttribute("data-tab"),p()})});p();c();
