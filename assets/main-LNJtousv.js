@@ -73,15 +73,15 @@
     </div>
     <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
       <a href="interior.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
-        <img src="interior_angle_1.jpg" alt="Interior Gallery" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
-        <h3 style="color: var(--accent-pink);">Explore Store Interior Renders ↗</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">View wide-angle Japandi seating, Timber panelling & Pop-Art Wall</p>
+        <img src="yuki_chi_store_complete.jpg" alt="Interior Architecture" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Store Architecture Blueprint ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Fluted timber dispense wall, Japandi dining & integrated toppings island</p>
       </a>
 
       <a href="toppings.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
-        <img src="topping_island_detail.jpg" alt="Toppings Gallery" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
-        <h3 style="color: var(--accent-pink);">Explore Gourmet Toppings & Sauce Taps ↗</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">View Chrome Sauce Taps, Mini Mochis, Brownie Cubes & Love Letters</p>
+        <img src="yuki_chi_topping_station.jpg" alt="Gourmet Toppings Bar" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Gourmet Toppings & Heated Sauce Bar ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Heated drizzle wells, homemade mochis, fudge brownies & fruit compotes</p>
       </a>
     </div>
   </section>
@@ -199,7 +199,7 @@
   <footer>
     <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Private & Confidential Investor Briefing.</p>
   </footer>
-`;const p=document.querySelector("#input-cups"),u=document.querySelector("#input-weight"),h=document.querySelector("#input-price"),m=document.querySelector("#val-cups"),b=document.querySelector("#val-weight"),f=document.querySelector("#val-price"),y=document.querySelector("#res-aov"),C=document.querySelector("#res-revenue"),w=document.querySelector("#res-cogs"),S=document.querySelector("#res-net"),N=document.querySelector("#res-payback");function o(i){return new Intl.NumberFormat("vi-VN").format(Math.round(i))+" VNĐ"}function d(){const i=parseInt(p.value),a=parseInt(u.value),n=parseInt(h.value);m.textContent=i,b.textContent=`${a}g`,f.textContent=o(n);const r=a/100*n,t=i*r*30,e=t*.31,c=t-e-17e7,l=c>0?(16e8/c).toFixed(1):"N/A";y.textContent=o(r),C.textContent=o(t),w.textContent=`-${o(e)}`,S.textContent=o(c),N.textContent=l!=="N/A"?`~${l} Months`:"Unprofitable"}p.addEventListener("input",d);u.addEventListener("input",d);h.addEventListener("input",d);d();const g={machines:`
+`;const p=document.querySelector("#input-cups"),u=document.querySelector("#input-weight"),h=document.querySelector("#input-price"),v=document.querySelector("#val-cups"),b=document.querySelector("#val-weight"),f=document.querySelector("#val-price"),y=document.querySelector("#res-aov"),C=document.querySelector("#res-revenue"),w=document.querySelector("#res-cogs"),S=document.querySelector("#res-net"),N=document.querySelector("#res-payback");function o(i){return new Intl.NumberFormat("vi-VN").format(Math.round(i))+" VNĐ"}function d(){const i=parseInt(p.value),a=parseInt(u.value),n=parseInt(h.value);v.textContent=i,b.textContent=`${a}g`,f.textContent=o(n);const r=a/100*n,t=i*r*30,e=t*.31,c=t-e-17e7,l=c>0?(16e8/c).toFixed(1):"N/A";y.textContent=o(r),C.textContent=o(t),w.textContent=`-${o(e)}`,S.textContent=o(c),N.textContent=l!=="N/A"?`~${l} Months`:"Unprofitable"}p.addEventListener("input",d);u.addEventListener("input",d);h.addEventListener("input",d);d();const g={machines:`
     <thead>
       <tr>
         <th>Tier / Model</th>
@@ -304,4 +304,4 @@
         <td>94,250,000 VNĐ</td>
       </tr>
     </tbody>
-  `},v=document.querySelector("#tab-content");v.innerHTML=g.machines;document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",a=>{document.querySelectorAll(".tab-btn").forEach(r=>r.classList.remove("active")),a.target.classList.add("active");const n=a.target.getAttribute("data-tab");v.innerHTML=g[n]})});
+  `},m=document.querySelector("#tab-content");m.innerHTML=g.machines;document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",a=>{document.querySelectorAll(".tab-btn").forEach(r=>r.classList.remove("active")),a.target.classList.add("active");const n=a.target.getAttribute("data-tab");m.innerHTML=g[n]})});
