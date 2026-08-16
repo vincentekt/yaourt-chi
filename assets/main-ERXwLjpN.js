@@ -23,10 +23,10 @@
       <div>
         <div class="hero-tag">Investment Opportunity • Saigon District 1</div>
         <h1 class="hero-title">
-          Bringing <span>Yo-Chi's Cult Froyo</span> to HCMC Japan Town
+          Bringing <span>Artisanal Self-Serve Froyo</span> to HCMC Japan Town
         </h1>
         <p class="hero-desc">
-          Yuki-Chi (雪知) is a high-margin, self-serve Acai & Frozen Yogurt bar replica of Singapore's famous Star Vista outlet, positioned directly in Saigon's Japan Town nightlife & foodie district.
+          Yuki-Chi (雪知) is a high-margin, self-serve Acai & Frozen Yogurt bar combining modern Japanese aesthetic minimalism with gourmet toppings, positioned directly in Saigon's vibrant Japan Town.
         </p>
         <div class="stats-bar">
           <div class="stat-item">
@@ -52,8 +52,8 @@
   <!-- Concept Section -->
   <section id="concept" class="section">
     <div class="section-header">
-      <h2>Star Vista Instagrammable Concept</h2>
-      <p>A aesthetic hybrid of Singapore's Yo-Chi self-serve bar & Japandi minimalism.</p>
+      <h2>Modern Japandi Self-Serve Experience</h2>
+      <p>A seamless fusion of customizable soft-serve superfoods and refined Japanese cafe design.</p>
     </div>
     <div class="grid-3">
       <div class="feature-card">
@@ -118,7 +118,7 @@
         </div>
 
         <div style="background: rgba(255, 107, 139, 0.08); padding: 1rem; border-radius: 12px; font-size: 0.85rem; color: var(--accent-pink);">
-          💡 <b>Benchmark:</b> Yo-Chi Singapore averages ~300g per bowl ($6.00 USD). Japan Town D1 location targets high foot-traffic expat & Gen Z crowd.
+          💡 <b>Industry Benchmark:</b> Premium self-serve froyo bars average ~280g–320g per bowl. Japan Town D1 location targets high foot-traffic expat & Gen Z consumer base.
         </div>
       </div>
 
@@ -206,7 +206,7 @@
   <footer>
     <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Private & Confidential Investor Briefing.</p>
   </footer>
-`;const p=document.querySelector("#input-cups"),u=document.querySelector("#input-weight"),h=document.querySelector("#input-price"),g=document.querySelector("#val-cups"),b=document.querySelector("#val-weight"),y=document.querySelector("#val-price"),f=document.querySelector("#res-aov"),C=document.querySelector("#res-revenue"),w=document.querySelector("#res-cogs"),S=document.querySelector("#res-net"),N=document.querySelector("#res-payback");function o(r){return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ"}function c(){const r=parseInt(p.value),a=parseInt(u.value),n=parseInt(h.value);g.textContent=r,b.textContent=`${a}g`,y.textContent=o(n);const i=a/100*n,t=r*i*30,e=t*.31,d=t-e-17e7,l=d>0?(16e8/d).toFixed(1):"N/A";f.textContent=o(i),C.textContent=o(t),w.textContent=`-${o(e)}`,S.textContent=o(d),N.textContent=l!=="N/A"?`~${l} Months`:"Unprofitable"}p.addEventListener("input",c);u.addEventListener("input",c);h.addEventListener("input",c);c();const m={machines:`
+`;const p=document.querySelector("#input-cups"),u=document.querySelector("#input-weight"),h=document.querySelector("#input-price"),g=document.querySelector("#val-cups"),b=document.querySelector("#val-weight"),y=document.querySelector("#val-price"),f=document.querySelector("#res-aov"),w=document.querySelector("#res-revenue"),C=document.querySelector("#res-cogs"),S=document.querySelector("#res-net"),x=document.querySelector("#res-payback");function o(r){return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ"}function c(){const r=parseInt(p.value),a=parseInt(u.value),n=parseInt(h.value);g.textContent=r,b.textContent=`${a}g`,y.textContent=o(n);const i=a/100*n,t=r*i*30,e=t*.31,d=t-e-17e7,l=d>0?(16e8/d).toFixed(1):"N/A";f.textContent=o(i),w.textContent=o(t),C.textContent=`-${o(e)}`,S.textContent=o(d),x.textContent=l!=="N/A"?`~${l} Months`:"Unprofitable"}p.addEventListener("input",c);u.addEventListener("input",c);h.addEventListener("input",c);c();const m={machines:`
     <thead>
       <tr>
         <th>Tier / Model</th>
