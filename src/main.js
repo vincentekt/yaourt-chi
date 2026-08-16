@@ -75,15 +75,15 @@ document.querySelector('#app').innerHTML = `
     </div>
     <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
       <a href="interior.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
-        <img src="interior_angle_1.jpg" alt="Interior Gallery" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
-        <h3 style="color: var(--accent-pink);">Explore Store Interior Renders ↗</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">View wide-angle Japandi seating, Timber panelling & Pop-Art Wall</p>
+        <img src="yuki_chi_store_complete.jpg" alt="Interior Architecture" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Store Architecture Blueprint ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Fluted timber dispense wall, Japandi dining & integrated toppings island</p>
       </a>
 
       <a href="toppings.html" class="feature-card" style="text-decoration: none; text-align: center; border-color: rgba(255,107,139,0.3);">
-        <img src="topping_island_detail.jpg" alt="Toppings Gallery" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
-        <h3 style="color: var(--accent-pink);">Explore Gourmet Toppings & Sauce Taps ↗</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">View Chrome Sauce Taps, Mini Mochis, Brownie Cubes & Love Letters</p>
+        <img src="yuki_chi_topping_station.jpg" alt="Gourmet Toppings Bar" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+        <h3 style="color: var(--accent-pink);">Gourmet Toppings & Heated Sauce Bar ↗</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Heated drizzle wells, homemade mochis, fudge brownies & fruit compotes</p>
       </a>
     </div>
   </section>
