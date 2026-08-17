@@ -3,10 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yuki-Chi 雪知 | Location & Market Research</title>
+    <title>Yuki-Chi 雪知 | Location, Competitors & Footfall Heatmap</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      .map-card-container {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 1.5rem;
+        margin-top: 1rem;
+      }
+      .poi-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        max-height: 480px;
+        overflow-y: auto;
+        padding-right: 5px;
+      }
+      .poi-item {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 0.85rem;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .poi-item:hover, .poi-item.active {
+        border-color: var(--accent-pink);
+        background: rgba(255, 107, 139, 0.08);
+      }
+      .poi-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 4px;
+      }
+      .tag-our { background: #ff6b8b; color: white; }
+      .tag-comp { background: #ef4444; color: white; }
+      .tag-office { background: #3b82f6; color: white; }
+      .tag-bar { background: #a855f7; color: white; }
+      @media (max-width: 960px) {
+        .map-card-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
     <link rel="stylesheet" crossorigin href="/yaourt-chi/assets/style-jVgN1NHU.css">
   </head>
   <body>
@@ -41,50 +86,100 @@
     <!-- Location Hero & Google Map Section -->
     <div class="section" style="padding-top: 8rem;">
       <div class="section-header">
-        <span class="hero-tag">Prime Site Selection & Competitor Intelligence</span>
-        <h2>Location & Market Opportunity</h2>
-        <p>Analyzing why Japan Town (District 1) represents an untapped market for a high-end self-serve superfood concept.</p>
+        <span class="hero-tag">Prime Site Selection, Competitors & Footfall Analysis</span>
+        <h2>Japan Town Location & Competitive Heatmap</h2>
+        <p>Target site positioning in Saigon's highest-density culinary alley surrounded by Grade A office towers, Izakayas, cocktail lounges, and boutique hotels.</p>
       </div>
 
-      <!-- Google Maps Embed Card -->
+      <!-- Google Maps Interactive Hub Card -->
       <div class="feature-card" style="padding: 1.5rem; margin-bottom: 3.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
           <div>
-            <span style="color: var(--accent-pink); font-weight: 700; font-size: 0.85rem;">TARGET LOCATION PIN</span>
-            <h3 style="margin-top: 0.3rem;">Hem 15B Le Thanh Ton / Thai Van Lung, Ben Nghe Ward, District 1, HCMC</h3>
+            <span style="color: var(--accent-pink); font-weight: 700; font-size: 0.85rem;">PRIMARY SITE PIN</span>
+            <h3 style="margin-top: 0.2rem;">Hem 15B Le Thanh Ton / Thai Van Lung, Ben Nghe Ward, District 1, HCMC</h3>
           </div>
-          <a href="https://maps.google.com/?q=15B+Le+Thanh+Ton,+Ben+Nghe,+District+1,+Ho+Chi+Minh+City" target="_blank" class="btn-primary" style="font-size: 0.82rem; padding: 0.5rem 1rem;">Open in Google Maps ↗</a>
+          <div style="display: flex; gap: 0.5rem;">
+            <a href="https://maps.google.com/?q=15B+Le+Thanh+Ton,+District+1,+Ho+Chi+Minh+City" target="_blank" class="btn-primary" style="font-size: 0.82rem; padding: 0.5rem 1rem;">Open in Google Maps ↗</a>
+          </div>
         </div>
 
-        <div style="width: 100%; height: 420px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4184606711586!2d106.70295837583842!3d10.779224489369986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4738541285%3A0x6b10766b3f7f0ad3!2s15B%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20B%E1%BA%BFn%20Ngh%C3%A9%2C%20Qu%E1%BA%ADn%201%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh!5e0!3m2!1sen!2svn!4v1723850000000!5m2!1sen!2svn" 
-            width="100%" 
-            height="100%" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+        <div class="map-card-container">
+          <!-- Google Map Embed -->
+          <div style="width: 100%; height: 480px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
+            <iframe 
+              id="gmap-frame"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4184606711586!2d106.70295837583842!3d10.779224489369986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4738541285%3A0x6b10766b3f7f0ad3!2s15B%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20B%E1%BA%BFn%20Ngh%C3%A9%2C%20Qu%E1%BA%ADn%201%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh!5e0!3m2!1sen!2svn!4v1723850000000!5m2!1sen!2svn" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <!-- Points of Interest & Competitors Explorer -->
+          <div class="poi-list">
+            <!-- Our Site -->
+            <div class="poi-item active" style="border-left: 4px solid var(--accent-pink);">
+              <span class="poi-tag tag-our">OUR LOCATION</span>
+              <h4 style="margin: 2px 0;">Yuki-Chi 雪知 Flagship</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Hem 15B Le Thanh Ton alley epicenter. High pedestrian visibility.</p>
+            </div>
+
+            <!-- Competitor 1 -->
+            <div class="poi-item" style="border-left: 4px solid #ef4444;">
+              <span class="poi-tag tag-comp">COMPETITOR (BINGSU & SWEETS)</span>
+              <h4 style="margin: 2px 0;">Local Bingsu & Shaved Ice Cafes</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted);"><b>Status:</b> Struggling with high table dwell times, heavy dairy/sugar bowls, zero grab-and-go.</p>
+            </div>
+
+            <!-- Competitor 2 -->
+            <div class="poi-item" style="border-left: 4px solid #ef4444;">
+              <span class="poi-tag tag-comp">COMPETITOR (MATCHA & BAKERY)</span>
+              <h4 style="margin: 2px 0;">Morico & Banan Patisserie</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">15B8 & Le Loi. High-ticket sit-down parfaits & choux. Not daily healthy treats.</p>
+            </div>
+
+            <!-- Customer Source 1: Offices -->
+            <div class="poi-item" style="border-left: 4px solid #3b82f6;">
+              <span class="poi-tag tag-office">CUSTOMER SOURCE (OFFICES)</span>
+              <h4 style="margin: 2px 0;">Sonatus, CJ Tower & Lancaster</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Within 100m–300m. 15,000+ multinational executives, bankers & tech staff.</p>
+            </div>
+
+            <!-- Customer Source 2: Bars & Nightlife -->
+            <div class="poi-item" style="border-left: 4px solid #a855f7;">
+              <span class="poi-tag tag-bar">CUSTOMER SOURCE (BARS & IZAKAYAS)</span>
+              <h4 style="margin: 2px 0;">Stir, Qui, Mangetsu & Izakaya Ten</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">50+ Izakayas & cocktail lounges. Huge late-night post-dinner dessert rush (8 PM–11:30 PM).</p>
+            </div>
+          </div>
         </div>
 
-        <div class="grid-3" style="margin-top: 1.5rem; gap: 1.2rem;">
-          <div style="background: rgba(255, 255, 255, 0.03); padding: 1rem; border-radius: 8px;">
-            <strong style="color: var(--accent-pink);">Demographics:</strong>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">High-density Japanese & Western expats, tech professionals, wealthy tourists, and Gen Z food hunters.</p>
+        <!-- 3 Footfall Engine Cards -->
+        <div class="grid-3" style="margin-top: 2rem; gap: 1.5rem;">
+          <div class="feature-card" style="border-top: 3px solid #3b82f6; padding: 1.2rem;">
+            <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🏢</div>
+            <strong style="color: #3b82f6;">Office Workforce (Lunch & Afternoon 12 PM–5 PM)</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Surrounded by Grade A towers (Sonatus, CJ Tower, Lancaster, Deutsches Haus, Vincom Center). High disposable income professionals seeking refreshing, healthy afternoon pick-me-ups.</p>
           </div>
-          <div style="background: rgba(255, 255, 255, 0.03); padding: 1rem; border-radius: 8px;">
-            <strong style="color: var(--accent-gold);">Footfall Dynamics:</strong>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">High afternoon cafe traffic + massive late-night post-dinner dining traffic from nearby Izakayas, Ramen bars & Yakitori spots.</p>
+
+          <div class="feature-card" style="border-top: 3px solid #a855f7; padding: 1.2rem;">
+            <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🍶</div>
+            <strong style="color: #a855f7;">Izakaya & Bar Nightlife (Evening 7 PM–11:30 PM)</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Over 50 Japanese izakayas, yakitori spots, and speakeasy cocktail bars (Mangetsu, Stir, Qui, Ten) drive huge late-night foot traffic. Japanese tradition of <i>Shime-Parfait</i> (post-alcohol dessert) fuels high late-night sales.</p>
           </div>
-          <div style="background: rgba(255, 255, 255, 0.03); padding: 1rem; border-radius: 8px;">
-            <strong style="color: var(--accent-green);">Competitive Vacuum:</strong>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">Zero premium customizable Acai/Froyo bars in Japan Town. Existing options are limited to heavy Korean Bingsu or Japanese Matcha parfaits.</p>
+
+          <div class="feature-card" style="border-top: 3px solid var(--accent-pink); padding: 1.2rem;">
+            <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🏨</div>
+            <strong style="color: var(--accent-pink);">Expat Residents & Hotel Guests (All Day)</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Azumaya Hotel, KiN Hotel, Somerset Serviced Apartments and dense expat housing. Steady weekend traffic of Gen Z foodie creators exploring Japan Town's photogenic alleyways.</p>
           </div>
         </div>
       </div>
 
-      <!-- Competitive Landscape Deep Dive -->
+      <!-- Detailed Competitor Breakdown -->
       <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
         <span class="hero-tag">Competitive Intelligence</span>
         <h2>Why Competitors Struggle vs. The Yuki-Chi Advantage</h2>
@@ -107,8 +202,8 @@
               <td><b>Traditional Korean Bingsu</b><br><span style="color: var(--text-muted); font-size: 0.8rem;">(Local Japan Town / D1 cafes)</span></td>
               <td>Pre-set shaved ice bowls with condensed milk & sweet beans. Fixed menu, sit-down only.</td>
               <td>
-                • Shared portions only (hard for solo diners)<br>
-                • High table dwell time (low turnover)<br>
+                • Shared giant portions only (alienates solo diners)<br>
+                • High table dwell time 45+ mins (low revenue turnover)<br>
                 • Perceived as high-calorie / sugar-heavy<br>
                 • Zero customization
               </td>
@@ -121,7 +216,7 @@
               <td><b>Old-School Froyo Chains</b><br><span style="color: var(--text-muted); font-size: 0.8rem;">(Older generation mall kiosks)</span></td>
               <td>Basic tart yogurt with low-cost canned fruits, sprinkles, and plastic squeeze bottle sauces.</td>
               <td>
-                • Low product perceived value<br>
+                • Low perceived value<br>
                 • Cheap toppings turn off modern Gen Z<br>
                 • Low Instagrammability<br>
                 • Stagnant flavor innovation
