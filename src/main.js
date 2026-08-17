@@ -20,10 +20,11 @@ document.querySelector('#app').innerHTML = `
           <a href="customer-creations.html">🍨 Customer Creations</a>
         </div>
       </li>
-      <li><a href="location-market-research.html">Market & Location ↗</a></li>
+      <li><a href="location-market-research.html">Location</a></li>
+      <li><a href="foreign-ownership-tax.html">Ownership & Tax ↗</a></li>
       <li><a href="#calculator">ROI Calculator</a></li>
-      <li><a href="#sourcing">Financials & Sourcing</a></li>
-      <li><a href="#roadmap">Growth Roadmap</a></li>
+      <li><a href="#sourcing">Financials</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
     </ul>
 
     <div class="nav-actions">

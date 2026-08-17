@@ -11,6 +11,7 @@ export default defineConfig({
         toppings: resolve(__dirname, 'toppings.html'),
         creations: resolve(__dirname, 'customer-creations.html'),
         market: resolve(__dirname, 'location-market-research.html'),
+        ownership: resolve(__dirname, 'foreign-ownership-tax.html'),
       },
     },
   },
