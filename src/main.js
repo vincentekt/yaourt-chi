@@ -20,6 +20,7 @@ document.querySelector('#app').innerHTML = `
           <a href="customer-creations.html">🍨 Customer Creations</a>
         </div>
       </li>
+      <li><a href="location-market-research.html">Market & Location ↗</a></li>
       <li><a href="#calculator">ROI Calculator</a></li>
       <li><a href="#sourcing">Financials & Sourcing</a></li>
       <li><a href="#roadmap">Growth Roadmap</a></li>
@@ -108,6 +109,16 @@ document.querySelector('#app').innerHTML = `
         <h3 style="color: var(--accent-pink);">Customer Creations Gallery ↗</h3>
         <p style="color: var(--text-muted); font-size: 0.9rem;">Dual swirls, Matcha pistachio brownies & Strawberry Lychee cups</p>
       </a>
+    </div>
+
+    <!-- Location & Market Research Highlight Banner -->
+    <div class="feature-card" style="margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; padding: 2rem; border-left: 4px solid var(--accent-gold); flex-wrap: wrap; gap: 1.5rem;">
+      <div style="max-width: 700px;">
+        <span style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700;">SITE SELECTION & COMPETITIVE INTELLIGENCE</span>
+        <h3 style="font-size: 1.3rem; margin-top: 0.3rem;">Japan Town HCMC (Le Thanh Ton) Market Opportunity</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 0.4rem;">See the interactive Google Map pin, footfall analysis, and why existing Bingsu & old-school froyo spots underperform compared to our pay-by-weight self-serve model.</p>
+      </div>
+      <a href="location-market-research.html" class="btn-primary" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #000; font-weight: 700;">View Market Research ↗</a>
     </div>
   </section>
 

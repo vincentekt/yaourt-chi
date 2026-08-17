@@ -10,6 +10,7 @@ export default defineConfig({
         interior: resolve(__dirname, 'interior.html'),
         toppings: resolve(__dirname, 'toppings.html'),
         creations: resolve(__dirname, 'customer-creations.html'),
+        market: resolve(__dirname, 'location-market-research.html'),
       },
     },
   },
