@@ -56,6 +56,28 @@
       .tag-bar { background: #a855f7; color: white; }
       .tag-hotel { background: #10b981; color: white; }
 
+      .poi-tab {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 6px 4px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: var(--transition);
+        white-space: nowrap;
+        text-align: center;
+      }
+      .poi-tab.active {
+        background: var(--accent-pink);
+        color: white;
+      }
+      .poi-tab:hover:not(.active) {
+        color: white;
+      }
+
       /* Custom Map Marker Tooltips & Popups */
       .leaflet-popup-content-wrapper {
         background: #181b24;
@@ -154,76 +176,61 @@
           <!-- Interactive Map Container -->
           <div id="interactive-map"></div>
 
-          <!-- Points of Interest & Competitors Explorer -->
-          <div class="poi-list">
-            <!-- Our Site -->
-            <div class="poi-item active" style="border-left: 4px solid var(--accent-pink);">
-              <span class="poi-tag tag-our">OUR LOCATION</span>
-              <h4 style="margin: 2px 0;">Yuki-Chi 雪知 Flagship</h4>
-              <p style="font-size: 0.8rem; color: var(--text-muted);">Hem 15B Le Thanh Ton alley epicenter. High pedestrian visibility.</p>
+          <!-- Points of Interest & Footfall Explorer with Tabs -->
+          <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+            <!-- Category Filter Tabs -->
+            <div style="display: flex; background: rgba(255, 255, 255, 0.05); padding: 3px; border-radius: 8px; gap: 4px;">
+              <button id="filter-all" class="poi-tab active" onclick="filterPOIs('all')">All Pins (7)</button>
+              <button id="filter-comp" class="poi-tab" onclick="filterPOIs('comp')">Competitors</button>
+              <button id="filter-source" class="poi-tab" onclick="filterPOIs('source')">Customer Drivers</button>
             </div>
 
-            <!-- Competitor 1 -->
-            <div class="poi-item" style="border-left: 4px solid #ef4444;">
-              <span class="poi-tag tag-comp">COMPETITOR (BINGSU & SWEETS)</span>
-              <h4 style="margin: 2px 0;">Local Bingsu & Shaved Ice Cafes</h4>
-              <p style="font-size: 0.8rem; color: var(--text-muted);"><b>Status:</b> Struggling with high table dwell times, heavy dairy/sugar bowls, zero grab-and-go.</p>
+            <div class="poi-list" id="poi-list-container">
+              <!-- Our Site -->
+              <div class="poi-item active" data-cat="our" style="border-left: 4px solid var(--accent-pink);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span class="poi-tag tag-our">OUR SITE</span>
+                  <span style="font-size: 0.75rem; color: var(--accent-pink); font-weight: 700;">★ Epicenter</span>
+                </div>
+                <h4 style="margin: 4px 0 2px 0;">Yuki-Chi 雪知 Flagship</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">Hem 15B Le Thanh Ton alley core. High foot-traffic pedestrian corridor.</p>
+              </div>
+
+              <!-- Competitor 1 -->
+              <div class="poi-item" data-cat="comp" style="border-left: 4px solid #ef4444;">
+                <span class="poi-tag tag-comp">COMPETITOR (BINGSU)</span>
+                <h4 style="margin: 4px 0 2px 0;">Local Bingsu & Shaved Ice</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">Struggles with 45+ min table dwell times, heavy dairy bowls, zero grab-and-go customization.</p>
+              </div>
+
+              <!-- Competitor 2 -->
+              <div class="poi-item" data-cat="comp" style="border-left: 4px solid #ef4444;">
+                <span class="poi-tag tag-comp">COMPETITOR (MATCHA & CAKES)</span>
+                <h4 style="margin: 4px 0 2px 0;">Morico & Banan Patisserie</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">15B8 Le Thanh Ton. Sit-down parfaits & choux pastries; high ticket, not daily healthy snacks.</p>
+              </div>
+
+              <!-- Customer Source 1: Offices -->
+              <div class="poi-item" data-cat="source" style="border-left: 4px solid #3b82f6;">
+                <span class="poi-tag tag-office">OFFICE DRIVER (12 PM–5 PM)</span>
+                <h4 style="margin: 4px 0 2px 0;">Sonatus & CJ Office Towers</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">Within 100m–300m. 15,000+ corporate executives seeking healthy afternoon superfood treats.</p>
+              </div>
+
+              <!-- Customer Source 2: Bars & Nightlife -->
+              <div class="poi-item" data-cat="source" style="border-left: 4px solid #a855f7;">
+                <span class="poi-tag tag-bar">NIGHTLIFE DRIVER (7 PM–11:30 PM)</span>
+                <h4 style="margin: 4px 0 2px 0;">50+ Izakayas & Cocktail Bars</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">Mangetsu, Ten, Stir & Qui. Huge evening demand driven by the Japanese <i>Shime-Parfait</i> post-drinking ritual.</p>
+              </div>
+
+              <!-- Customer Source 3: Hotels & Residences -->
+              <div class="poi-item" data-cat="source" style="border-left: 4px solid #10b981;">
+                <span class="poi-tag tag-hotel">HOTELS & RESIDENCES (ALL DAY)</span>
+                <h4 style="margin: 4px 0 2px 0;">Saigon Sky Garden & Boutique Hotels</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">200+ expat suites (Sky Garden) + Silverland Sakyo, KiN & Azumaya. High-spending international travelers.</p>
+              </div>
             </div>
-
-            <!-- Competitor 2 -->
-            <div class="poi-item" style="border-left: 4px solid #ef4444;">
-              <span class="poi-tag tag-comp">COMPETITOR (MATCHA & BAKERY)</span>
-              <h4 style="margin: 2px 0;">Morico & Banan Patisserie</h4>
-              <p style="font-size: 0.8rem; color: var(--text-muted);">15B8 & Le Loi. High-ticket sit-down parfaits & choux. Not daily healthy treats.</p>
-            </div>
-
-            <!-- Customer Source 1: Offices -->
-            <div class="poi-item" style="border-left: 4px solid #3b82f6;">
-              <span class="poi-tag tag-office">CUSTOMER SOURCE (OFFICES)</span>
-              <h4 style="margin: 2px 0;">Sonatus, CJ Tower & Lancaster</h4>
-              <p style="font-size: 0.8rem; color: var(--text-muted);">Within 100m–300m. 15,000+ multinational executives, bankers & tech staff.</p>
-            </div>
-
-            <!-- Customer Source 2: Bars & Nightlife -->
-            <div class="poi-item" style="border-left: 4px solid #a855f7;">
-              <span class="poi-tag tag-bar">CUSTOMER SOURCE (BARS & IZAKAYAS)</span>
-              <h4 style="margin: 2px 0;">Stir, Qui, Mangetsu & Izakaya Ten</h4>
-              <p style="font-size: 0.8rem; color: var(--text-muted);">50+ Izakayas & cocktail lounges. Huge late-night post-dinner dessert rush (8 PM–11:30 PM).</p>
-            </div>
-
-            <!-- Customer Source 3: Hotels & Residences -->
-            <div class="poi-item" style="border-left: 4px solid #10b981;">
-              <span class="poi-tag" style="background: #10b981; color: white;">CUSTOMER SOURCE (HOTELS & RESIDENCES)</span>
-              <h4 style="margin: 2px 0;">30+ Boutique Hotels & Luxury Residences</h4>
-              <p style="font-size: 0.8rem; color: var(--text-muted);">Saigon Sky Garden (20 Le Thanh Ton), Silverland Sakyo, KiN Hotel, FLESTA, Azumaya & Lotte Hotel Saigon.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4 Footfall Engine Cards -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-          <div class="feature-card" style="border-top: 3px solid #3b82f6; padding: 1.2rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🏢</div>
-            <strong style="color: #3b82f6;">Grade A Office Towers (12 PM–5 PM)</strong>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Sonatus (15 Le Thanh Ton), CJ Tower, Lancaster, Deutsches Haus & Vincom Center. 15,000+ executives & bankers looking for healthy probiotic afternoon treats.</p>
-          </div>
-
-          <div class="feature-card" style="border-top: 3px solid #a855f7; padding: 1.2rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🍶</div>
-            <strong style="color: #a855f7;">50+ Izakayas & Bars (7 PM–11:30 PM)</strong>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Dense cluster of izakayas (Mangetsu, Ten) & speakeasy cocktail bars (Stir, Qui). Driven by Japan's famous <i>Shime-Parfait</i> ritual (dessert after alcohol & ramen).</p>
-          </div>
-
-          <div class="feature-card" style="border-top: 3px solid #10b981; padding: 1.2rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🏨</div>
-            <strong style="color: #10b981;">30+ Hotels & Luxury Residences (All Day)</strong>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">High concentration of long-stay expat residences (Saigon Sky Garden, FLESTA) and 4-star boutique hotels (Silverland Sakyo, KiN Hotel, Azumaya, Lotte Hotel). Wealthy international travelers seeking clean, Western/Japanese-standard snacks.</p>
-          </div>
-
-          <div class="feature-card" style="border-top: 3px solid var(--accent-pink); padding: 1.2rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">📸</div>
-            <strong style="color: var(--accent-pink);">Gen Z & Tourist Walkers (Weekends & Evenings)</strong>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Japan Town's atmospheric alleyways (Hem 15B / 8A) are one of Saigon's top photo-walk destinations for youth and international tourists searching for viral dessert spots.</p>
           </div>
         </div>
       </div>
@@ -437,6 +444,24 @@
 
       // Automatically open Yuki-Chi marker popup on load
       markerMap['yuki-chi'].openPopup();
+
+      // Filter POIs function
+      function filterPOIs(cat) {
+        document.querySelectorAll('.poi-tab').forEach(t => t.classList.remove('active'));
+        if (cat === 'all') document.querySelector('#filter-all').classList.add('active');
+        if (cat === 'comp') document.querySelector('#filter-comp').classList.add('active');
+        if (cat === 'source') document.querySelector('#filter-source').classList.add('active');
+
+        document.querySelectorAll('.poi-item').forEach(item => {
+          const itemCat = item.getAttribute('data-cat');
+          if (cat === 'all' || itemCat === cat || (cat === 'comp' && itemCat === 'comp') || (cat === 'source' && itemCat === 'source')) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+      window.filterPOIs = filterPOIs;
 
       // Click POI sidebar to fly to marker
       document.querySelectorAll('.poi-item').forEach((item, index) => {
