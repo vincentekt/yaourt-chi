@@ -18,6 +18,7 @@
           <a href="customer-creations.html">🍨 Customer Creations</a>
         </div>
       </li>
+      <li><a href="location-market-research.html">Market & Location ↗</a></li>
       <li><a href="#calculator">ROI Calculator</a></li>
       <li><a href="#sourcing">Financials & Sourcing</a></li>
       <li><a href="#roadmap">Growth Roadmap</a></li>
@@ -106,6 +107,16 @@
         <h3 style="color: var(--accent-pink);">Customer Creations Gallery ↗</h3>
         <p style="color: var(--text-muted); font-size: 0.9rem;">Dual swirls, Matcha pistachio brownies & Strawberry Lychee cups</p>
       </a>
+    </div>
+
+    <!-- Location & Market Research Highlight Banner -->
+    <div class="feature-card" style="margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; padding: 2rem; border-left: 4px solid var(--accent-gold); flex-wrap: wrap; gap: 1.5rem;">
+      <div style="max-width: 700px;">
+        <span style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700;">SITE SELECTION & COMPETITIVE INTELLIGENCE</span>
+        <h3 style="font-size: 1.3rem; margin-top: 0.3rem;">Japan Town HCMC (Le Thanh Ton) Market Opportunity</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 0.4rem;">See the interactive Google Map pin, footfall analysis, and why existing Bingsu & old-school froyo spots underperform compared to our pay-by-weight self-serve model.</p>
+      </div>
+      <a href="location-market-research.html" class="btn-primary" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #000; font-weight: 700;">View Market Research ↗</a>
     </div>
   </section>
 
@@ -282,7 +293,7 @@
   <footer>
     <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Private & Confidential Investor Briefing.</p>
   </footer>
-`;let l="VND";const y={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=y[l],r=i*e.rate;if(l==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(r)}const g=document.querySelector("#input-cups"),v=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),x=document.querySelector("#val-cups"),S=document.querySelector("#val-weight"),w=document.querySelector("#val-price"),C=document.querySelector("#res-aov"),T=document.querySelector("#res-revenue"),k=document.querySelector("#res-cogs"),m=document.querySelector("#res-opex"),P=document.querySelector("#res-net"),M=document.querySelector("#res-payback"),h=document.querySelector("#hero-price");function c(){const i=parseInt(g.value),e=parseInt(v.value),r=parseInt(b.value);x.textContent=i,S.textContent=`${e}g`,w.textContent=t(r),h&&(h.textContent=`${t(r)} / 100g`);const o=e/100*r,a=i*o*30,n=a*.31,s=17e7,d=a-n-s,u=d>0?(16e8/d).toFixed(1):"N/A";C.textContent=t(o),T.textContent=t(a),k.textContent=`-${t(n)}`,m&&(m.textContent=`-${t(s)}`),P.textContent=t(d),M.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}g.addEventListener("input",c);v.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(r=>r.classList.remove("active")),e.target.classList.add("active"),l=e.target.getAttribute("data-curr"),c(),p()})});const D=document.querySelector("#tab-content");let f="machines";function p(){const i=l,e={machines:`
+`;let l="VND";const y={VND:{rate:1,symbol:"VNĐ",decimals:0},USD:{rate:1/25400,symbol:"$",decimals:2,prefix:!0},SGD:{rate:1/19200,symbol:"S$",decimals:2,prefix:!0}};function t(i){const e=y[l],r=i*e.rate;if(l==="VND")return new Intl.NumberFormat("vi-VN").format(Math.round(r))+" VNĐ";if(e.prefix)return e.symbol+new Intl.NumberFormat("en-US",{minimumFractionDigits:e.decimals,maximumFractionDigits:e.decimals}).format(r)}const g=document.querySelector("#input-cups"),v=document.querySelector("#input-weight"),b=document.querySelector("#input-price"),x=document.querySelector("#val-cups"),S=document.querySelector("#val-weight"),w=document.querySelector("#val-price"),C=document.querySelector("#res-aov"),T=document.querySelector("#res-revenue"),k=document.querySelector("#res-cogs"),m=document.querySelector("#res-opex"),P=document.querySelector("#res-net"),M=document.querySelector("#res-payback"),h=document.querySelector("#hero-price");function c(){const i=parseInt(g.value),e=parseInt(v.value),r=parseInt(b.value);x.textContent=i,S.textContent=`${e}g`,w.textContent=t(r),h&&(h.textContent=`${t(r)} / 100g`);const o=e/100*r,a=i*o*30,n=a*.31,s=17e7,d=a-n-s,u=d>0?(16e8/d).toFixed(1):"N/A";C.textContent=t(o),T.textContent=t(a),k.textContent=`-${t(n)}`,m&&(m.textContent=`-${t(s)}`),P.textContent=t(d),M.textContent=u!=="N/A"?`~${u} Months`:"Unprofitable"}g.addEventListener("input",c);v.addEventListener("input",c);b.addEventListener("input",c);document.querySelectorAll("#currency-switch .curr-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll("#currency-switch .curr-btn").forEach(r=>r.classList.remove("active")),e.target.classList.add("active"),l=e.target.getAttribute("data-curr"),c(),p()})});const E=document.querySelector("#tab-content");let f="machines";function p(){const i=l,e={machines:`
       <thead>
         <tr>
           <th>Tier / Model</th>
@@ -442,4 +453,4 @@
           <td><b>${t(17e7)}</b></td>
         </tr>
       </tbody>
-    `},r=document.querySelector("#card-total-capex"),o=document.querySelector("#card-total-opex");r&&(r.textContent=t(16e8)),o&&(o.textContent=`${t(17e7)} / mo`),D.innerHTML=e[f]}document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll(".tab-btn").forEach(r=>r.classList.remove("active")),e.target.classList.add("active"),f=e.target.getAttribute("data-tab"),p()})});p();c();
+    `},r=document.querySelector("#card-total-capex"),o=document.querySelector("#card-total-opex");r&&(r.textContent=t(16e8)),o&&(o.textContent=`${t(17e7)} / mo`),E.innerHTML=e[f]}document.querySelectorAll(".tab-btn").forEach(i=>{i.addEventListener("click",e=>{document.querySelectorAll(".tab-btn").forEach(r=>r.classList.remove("active")),e.target.classList.add("active"),f=e.target.getAttribute("data-tab"),p()})});p();c();
