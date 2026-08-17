@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="/src/style.css" />
     <style>
       .map-card-container {
@@ -15,11 +16,18 @@
         gap: 1.5rem;
         margin-top: 1rem;
       }
+      #interactive-map {
+        width: 100%;
+        height: 520px;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        z-index: 10;
+      }
       .poi-list {
         display: flex;
         flex-direction: column;
         gap: 0.8rem;
-        max-height: 480px;
+        max-height: 520px;
         overflow-y: auto;
         padding-right: 5px;
       }
@@ -47,6 +55,45 @@
       .tag-comp { background: #ef4444; color: white; }
       .tag-office { background: #3b82f6; color: white; }
       .tag-bar { background: #a855f7; color: white; }
+      .tag-hotel { background: #10b981; color: white; }
+
+      /* Custom Map Marker Tooltips & Popups */
+      .leaflet-popup-content-wrapper {
+        background: #181b24;
+        color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      }
+      .leaflet-popup-tip {
+        background: #181b24;
+      }
+      .custom-pin {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        border: 2px solid white;
+      }
+      .custom-pin.our-pin {
+        background: #ff6b8b;
+        animation: pulse 1.8s infinite;
+      }
+      .custom-pin.comp-pin { background: #ef4444; }
+      .custom-pin.office-pin { background: #3b82f6; }
+      .custom-pin.bar-pin { background: #a855f7; }
+      .custom-pin.hotel-pin { background: #10b981; }
+
+      @keyframes pulse {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 139, 0.7); }
+        70% { transform: scale(1.15); box-shadow: 0 0 0 10px rgba(255, 107, 139, 0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 139, 0); }
+      }
+
       @media (max-width: 960px) {
         .map-card-container {
           grid-template-columns: 1fr;
@@ -86,9 +133,9 @@
     <!-- Location Hero & Google Map Section -->
     <div class="section" style="padding-top: 8rem;">
       <div class="section-header">
-        <span class="hero-tag">Prime Site Selection, Competitors & Footfall Analysis</span>
+        <span class="hero-tag">Interactive Map with Live Custom Markers</span>
         <h2>Japan Town Location & Competitive Heatmap</h2>
-        <p>Target site positioning in Saigon's highest-density culinary alley surrounded by Grade A office towers, Izakayas, cocktail lounges, and boutique hotels.</p>
+        <p>Click any pin or list item below to inspect our flagship location, close dessert competitors, Grade A office towers, Izakaya clusters, and hotels.</p>
       </div>
 
       <!-- Google Maps Interactive Hub Card -->
@@ -104,19 +151,8 @@
         </div>
 
         <div class="map-card-container">
-          <!-- Google Map Embed -->
-          <div style="width: 100%; height: 480px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
-            <iframe 
-              id="gmap-frame"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4184606711586!2d106.70295837583842!3d10.779224489369986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4738541285%3A0x6b10766b3f7f0ad3!2s15B%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20B%E1%BA%BFn%20Ngh%C3%A9%2C%20Qu%E1%BA%ADn%201%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh!5e0!3m2!1sen!2svn!4v1723850000000!5m2!1sen!2svn" 
-              width="100%" 
-              height="100%" 
-              style="border:0;" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-          </div>
+          <!-- Interactive Map Container -->
+          <div id="interactive-map"></div>
 
           <!-- Points of Interest & Competitors Explorer -->
           <div class="poi-list">
@@ -301,5 +337,119 @@
     <footer>
       <p>© 2026 Yuki-Chi (雪知) Japan Town HCMC Project. Confidential Investor Briefing.</p>
     </footer>
+
+    <!-- Leaflet Interactive Map Script -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+      // Initialize map centered at Japan Town (Hem 15B Le Thanh Ton)
+      const map = L.map('interactive-map').setView([10.7796, 106.7032], 17);
+
+      // CartoDB Positron / Dark Matter luxury tiles
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+      }).addTo(map);
+
+      // Custom HTML Pin Generator
+      function createCustomIcon(className, text) {
+        return L.divIcon({
+          className: 'custom-pin-wrap',
+          html: `<div class="custom-pin ${className}">${text}</div>`,
+          iconSize: [32, 32],
+          iconAnchor: [16, 16],
+          popupAnchor: [0, -18]
+        });
+      }
+
+      // POI Datasets
+      const locations = [
+        {
+          id: 'yuki-chi',
+          name: '⭐ Yuki-Chi 雪知 (Our Location)',
+          category: 'our',
+          coords: [10.77945, 106.70315],
+          icon: createCustomIcon('our-pin', '🍦'),
+          desc: '<b>Target Flagship Store</b><br>Hem 15B Le Thanh Ton alley epicenter. High-traffic pedestrian corridor.'
+        },
+        {
+          id: 'bingsu-comp',
+          name: '❄️ Traditional Bingsu Cafes',
+          category: 'comp',
+          coords: [10.7801, 106.7028],
+          icon: createCustomIcon('comp-pin', '🍧'),
+          desc: '<b>Korean Shaved Ice / Bingsu</b><br>High table dwell time (45+ mins), large shared portions only, low seat turnover.'
+        },
+        {
+          id: 'morico-comp',
+          name: '🍵 Morico & Banan Patisserie',
+          category: 'comp',
+          coords: [10.7791, 106.7038],
+          icon: createCustomIcon('comp-pin', '🍰'),
+          desc: '<b>Japanese Matcha & Cakes</b><br>Sit-down dessert dining & choux pastries. Not positioned for daily healthy grab-and-go.'
+        },
+        {
+          id: 'sonatus',
+          name: '🏢 Sonatus Building (Grade A Offices)',
+          category: 'office',
+          coords: [10.7805, 106.7036],
+          icon: createCustomIcon('office-pin', '🏢'),
+          desc: '<b>15 Le Thanh Ton</b><br>Major tech & multinational office tower. 6,000+ daytime white-collar workers.'
+        },
+        {
+          id: 'cj-tower',
+          name: '🏢 CJ Tower & Lancaster',
+          category: 'office',
+          coords: [10.7788, 106.7042],
+          icon: createCustomIcon('office-pin', '🏢'),
+          desc: '<b>6 Le Thanh Ton</b><br>High-density executive offices & Sotochika Japanese coworking spaces.'
+        },
+        {
+          id: 'izakaya-cluster',
+          name: '🍶 Izakaya Ten, Mangetsu & Stir Bar',
+          category: 'bar',
+          coords: [10.7798, 106.7025],
+          icon: createCustomIcon('bar-pin', '🍶'),
+          desc: '<b>50+ Nightlife Bars & Izakayas</b><br>High evening footfall. Japanese <i>Shime-Parfait</i> post-drinking dessert rush (8 PM–11:30 PM).'
+        },
+        {
+          id: 'sky-garden',
+          name: '🏨 Saigon Sky Garden & KiN Hotel',
+          category: 'hotel',
+          coords: [10.7802, 106.7045],
+          icon: createCustomIcon('hotel-pin', '🏨'),
+          desc: '<b>20 Le Thanh Ton & Thai Van Lung</b><br>200+ luxury expat suites + 4-star boutique hotels (Silverland Sakyo, KiN, Azumaya).'
+        }
+      ];
+
+      const markerMap = {};
+
+      locations.forEach(loc => {
+        const marker = L.marker(loc.coords, { icon: loc.icon }).addTo(map);
+        marker.bindPopup(`
+          <div style="font-family: 'Plus Jakarta Sans', sans-serif;">
+            <h4 style="margin:0 0 6px 0; color: #ff6b8b;">${loc.name}</h4>
+            <p style="margin:0; font-size: 0.85rem; line-height: 1.4;">${loc.desc}</p>
+          </div>
+        `);
+        markerMap[loc.id] = marker;
+      });
+
+      // Automatically open Yuki-Chi marker popup on load
+      markerMap['yuki-chi'].openPopup();
+
+      // Click POI sidebar to fly to marker
+      document.querySelectorAll('.poi-item').forEach((item, index) => {
+        item.addEventListener('click', () => {
+          document.querySelectorAll('.poi-item').forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          const loc = locations[index];
+          if (loc && markerMap[loc.id]) {
+            map.flyTo(loc.coords, 18, { animate: true, duration: 1 });
+            markerMap[loc.id].openPopup();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
